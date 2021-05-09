@@ -79,7 +79,7 @@ const App = () => {
         return(
             <div>
                 <div className="container">
-                    <h1>Bar Chart</h1>
+                    <h3>Bar Chart</h3>
                     <svg width={width} height={height}>
                         {bars}
                         {countryLabels}
