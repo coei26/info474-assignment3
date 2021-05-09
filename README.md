@@ -1,2 +1,1 @@
-# react-parcel-test-upload
-react-parcel-test-upload
+# INFO 474 Assignment 3
