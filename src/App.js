@@ -70,16 +70,10 @@ const App = () => {
             const y = height - margin + 45
             return <text x={x} y={y}>{d.country}</text>
         });
-         const incomeLabels = sample.map((d) => {
-            const label = d.income === selectedCountry
-            const x = xScale(d.country);
-            const y = height + margin - 50
-            return <text x={x} y={y}>{label}</text>
-        }) 
         return(
             <div>
                 <div className="container">
-                    <h3>Bar Chart</h3>
+                    <h3>Bar Chart - income per person vs. countries</h3>
                     <svg width={width} height={height}>
                         {bars}
                         {countryLabels}

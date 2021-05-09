@@ -26359,29 +26359,12 @@ try {
           }, d.country)
         );
       });
-      const incomeLabels = sample.map(d => {
-        const label = d.income === selectedCountry;
-        const x = xScale(d.country);
-        const y = height + margin - 50;
-        return (
-          /*#__PURE__*/_reactDefault.default.createElement("text", {
-            x: x,
-            y: y,
-            __self: undefined,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 77,
-              columnNumber: 20
-            }
-          }, label)
-        );
-      });
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 80,
+            lineNumber: 74,
             columnNumber: 13
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26389,23 +26372,23 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 81,
+            lineNumber: 75,
             columnNumber: 17
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 82,
+            lineNumber: 76,
             columnNumber: 21
           }
-        }, "Bar Chart"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        }, "Bar Chart - income per person vs. countries"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
           width: width,
           height: height,
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 83,
+            lineNumber: 77,
             columnNumber: 21
           }
         }, bars, countryLabels)))
