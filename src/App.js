@@ -1,263 +1,101 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFetch } from "./hooks/useFetch";
-import { scaleLinear } from "d3-scale";
-import { extent, max, min, bin } from "d3-array";
-// import * as topojson from "topojson-client";
-// import world from "../land-50m";
+import { extent } from 'd3-array';
+import { scaleLinear, scaleBand } from 'd3-scale'; 
 
 
 const App = () => {
     const [data, loading] = useFetch(
-        "https://raw.githubusercontent.com/colinmegill/react-parcel-starter/main/weather.csv"
+        "https://raw.githubusercontent.com/coei26/info474-assignment3/main/internet_data.csv"
     );
-    const dataSmallSample = data.slice(0, 5000);
-    const TMAXextent = extent(dataSmallSample, (d) => {
-        return +d.TMAX;
-    });
-    console.log(TMAXextent);
-    const size = 500;
-    const margin = 20;
-    const axisTextAlignmentFactor = 3;
-    const yScale = scaleLinear()
-        .domain(TMAXextent) // unit: km
-        .range([size - margin, size - 350]); // unit: pixels
-    
-    _bins = bin().thresholds(30);
-    tmaxBins = _bins(
-        dataSmallSample.map((d) => {
-            return +d.TMAX;
-        })
-    );
-    
-    const histogramLeftPadding = 20;
 
-    // const land = topojson.feature(world, world.objects.land);
-    // const projection = d3.geoNaturalEarth1();
-    // const path = d3.geoPath(projection);
-    // const mapPathString = path(land);
+    // interactive
+    const [selectedCountry, setSelectedCountry] = useState();
 
-    
+    // dimensions of svg
+    const width = 900;
+    const height = 600;
+    const margin = 50;
+     
+    // display text when data is loading
+    if (loading) {
+        return <p>data is loading...</p>
+    } else {
 
-    return (
-        <div>
-            <h1>Exploratory Data Analysis, Assignment 2, INFO 474 SP 2021</h1>
-            <p>{loading && "Loading data!"}</p>
-            {/* <h3>Working with geo data</h3>
-            <svg width={size} height={size} style={{ border: "1px solid black" }}>
-                <path d={mapPathString} fill="rgb(200, 200, 200)"></path>
-                {dataSmallSample.map((measurement) => {
-                    return (<circle transform={`translate(${projection([measurement.longitude, measurement.latitude])})`} r="1.5" />);
-                })}
-            </svg> */}
-            <h3>Binning</h3>
-            <svg width={size} height={size} style={{ border: "1px solid black" }}>
-                {tmaxBins.map((bin, index) => {
-                    return(
-                        <rect 
-                            x={histogramLeftPadding + index * 11}
-                            y={size - bin.length - 5}
-                            width="10"
-                            height={bin.length} 
-                        />
-                    );
-                })}
-            </svg>
-            <h3>Scales in D3</h3>
-            <svg width={size} height={size} style={{ border: "1px solid black" }}>
-                <text
-                    x={size / 2 - 12}
-                    y={yScale(0) + axisTextAlignmentFactor}
-                    textAnchor="end"
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}
-                >
-                0
-                </text>
-                <text
-                    x={size / 2 - 12}
-                    y={yScale(100) + axisTextAlignmentFactor}
-                    textAnchor="end"
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}
-                >
-                100
-                </text>
-                <line
-                    x1={size / 2 - 10}
-                    y1={yScale(100)}
-                    x2={size / 2 - 5}
-                    y2={yScale(100)}
-                    stroke={"black"}
-                />
-                <line
-                    x1={size / 2 - 10}
-                    y1={yScale(0)}
-                    x2={size / 2 - 5}
-                    y2={yScale(0)}
-                    stroke={"black"}
-                />
-                {dataSmallSample.map((measurement, index) => {
-                const highlight = measurement.station === "KALISPELL GLACIER AP";
-                return (
-                    <line
-                        key={index}
-                        x1={size / 2}
-                        y1={yScale(measurement.TMAX)}
-                        x2={size / 2 + 20}
-                        y2={yScale(measurement.TMAX)}
-                        stroke={highlight ? "red" : "steelblue"}
-                        strokeOpacity={highlight ? 1 : 0.1}
-                    />
-                    );
-                })}
-        </svg>
-        <h3>Scatterplot</h3>
-        <svg width={size} height={size} style={{ border: "1px solid black" }}>
-            {dataSmallSample.map((measurement, index) => {
-                const highlight = measurement.station === "KALISPELL GLACIER AP";
-                return (
-                    <circle
-                        key={index}
-                        cx={100 - measurement.TMIN}
-                        cy={size - margin - measurement.TMAX}
-                        r="3"
-                        fill="none"
-                        stroke={highlight ? "red" : "steelblue"}
-                        strokeOpacity="0.2"
-                    />
-                    );
-            })}
-        </svg>
-        <h3>
-            Barcode plot TMAX at Kalispell Glacier (sounds cold, expect it to be
-            lower than average)
-        </h3>
-        <svg width={size} height={size} style={{ border: "1px solid black" }}>
-            <text
-                x={size / 2 - 12}
-                textAnchor="end"
-                y={size - margin + axisTextAlignmentFactor}
-                style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}
-            >
-            0
-            </text>
-            <text
-                x={size / 2 - 12}
-                textAnchor="end"
-                y={size - margin - 100 + axisTextAlignmentFactor}
-                style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}
-            >
-            100
-            </text>
-            <line
-                x1={size / 2 - 10}
-                y1={size - margin - 100}
-                x2={size / 2 - 5}
-                y2={size - margin - 100}
-                stroke={"black"}
-            />
-            <line
-                x1={size / 2 - 10}
-                y1={size - margin}
-                x2={size / 2 - 5}
-                y2={size - margin}
-                stroke={"black"}
-            />
-            {data.slice(0, 1000).map((measurement, index) => {
-                const highlight = measurement.station === "KALISPELL GLACIER AP";
-                return (
-                    <line
-                    key={index}
-                    x1={size / 2}
-                    y1={size - margin - measurement.TMAX}
-                    x2={size / 2 + 20}
-                    y2={size - margin - measurement.TMAX}
-                    stroke={highlight ? "red" : "steelblue"}
-                    strokeOpacity={highlight ? 1 : 0.1}
-                    />
-                );
-            })}
-      </svg>
-      <h3>
-        TMAX at Kalispell Glacier (sounds cold, expect it to be lower than
-        average)
-      </h3>
-      <svg width={size} height={size} style={{ border: "1px solid black" }}>
-        {data.slice(0, 300).map((measurement, index) => {
-            const highlight = measurement.station === "KALISPELL GLACIER AP";
+        const sample = (['United States', 'Australia', 'Canada', 'United Kingdom']).map(d => {
+            const row = data.find(v => v['country'] === d);
+            console.log(row);
+            return {
+                country: row.country,
+                income: row.incomeperperson
+            }
+        });
+        console.log(sample);
+        
+        // setting up scale
+        const totalExtent = extent(sample, d => d.income)
+        // ---- y axis
+        const max = totalExtent[1];
+        const min = totalExtent[0] - 30;
+        const yScale = scaleLinear()
+            .domain([min, max])
+            .range([height - margin, margin]);
+        // ---- x axis
+        const countries = sample.map(d => d.country);
+        const xScale = scaleBand()
+            .domain(countries)
+            .range([margin, width - margin])
+            .paddingInner(0.1);
+        // creating bars
+        const bars = sample.map((d) => {
+            const label = d.income === selectedCountry
+            const x = xScale(d.country);
+            const y = yScale(d.income);
+            const height = yScale(min) - yScale(d.income);
+            const width = xScale.bandwidth();
             return (
-                <circle
-                key={index}
-                cx={highlight ? size / 2 : size / 2 - 20}
-                cy={size - margin - measurement.TMAX}
-                r="3"
-                fill="none"
-                stroke={highlight ? "red" : "steelblue"}
-                strokeOpacity="0.2"
+                <rect
+                    x={x}
+                    y={y}
+                    height={height + 20}
+                    width={width}
+                    onMouseEnter={() => setSelectedCountry(d.income)}
+                    style={{fill: label ? "red" : "black"}}
                 />
-            );
-        })}
-      </svg>
-      <h3>Rendering circles :) this shows a distribution of TMAX</h3>
-      <svg width={size} height={size} style={{ border: "1px solid black" }}>
-        {data.slice(0, 300).map((measurement, index) => {
-            return (
-                <circle
-                key={index}
-                cx={size / 2}
-                cy={size - margin - measurement.TMAX}
-                r="3"
-                fill="none"
-                stroke={"steelblue"}
-                strokeOpacity="0.2"
-                />
-            );
-        })}
-      </svg>
-    </div>
-  );
-};
+            )
+        });
+        // adding labels
+        const countryLabels = sample.map((d) => {
+            const x = xScale(d.country);
+            const y = height - margin + 45
+            return <text x={x} y={y}>{d.country}</text>
+        });
+         const incomeLabels = sample.map((d) => {
+            const label = d.income === selectedCountry
+            const x = xScale(d.country);
+            const y = height + margin - 50
+            return <text x={x} y={y}>{label}</text>
+        }) 
+        return(
+            <div>
+                <div className="container">
+                    <h1>Bar Chart</h1>
+                    <svg width={width} height={height}>
+                        {bars}
+                        {countryLabels}
+                    </svg>         
+                </div>
+            </div>
+        )
+    }
+}
 
-
-// const App = () => {
-//     csv("https://raw.githubusercontent.com/coei26/info474-react-parcel-example/main/execution_data.csv")
-//         .then(data => console.log(data))
-//     return (
-//         <div>
-//             <h1>Exploratory Data Analysis, Assignment 2, INFO 474 SP 2021</h1>
-//             <p>Data</p>
-//         </div>
-//     )
-// };
+const getColumn = (data, name) => {
+    let values = [];
+    for (let i = 0; i < data.length; i++) {
+        values.push(data[i][name]);
+    }
+    return values
+}
 
 export default App;
-
-
-
-// import React from "react";
-
-// const viewHeight = 500;
-// const viewWidth = 500;
-
-// const App = () => {
-//     return (
-//         <div>
-//             <svg style={{
-//                 border: "1px solid pink",
-//                 width: viewWidth,
-//                 height: viewHeight
-//             }}>
-//                 <circle cx={20} cy={20} r="5"/>
-//                 <rect x="200" y="200" width="10" height="10" fill="rgb(230, 230, 230)"/>
-//                 <rect x="212" y="200" width="10" height="10" fill="rgb(230, 230, 230)"/>
-//                 <rect x="224" y="200" width="10" height="10" fill="rgb(230, 230, 230)"/>
-//                 <rect x="236" y="200" width="10" height="10" fill="rgb(230, 230, 230)"/>
-//                 <rect x="248" y="200" width="10" height="10"/>
-//                 <line x1="0" y1={viewHeight} x2="100" y2="200" stroke="black" />
-//                 <text x="20" y="35" class="small" style={{font: "italic 13px sans-serif"}}>
-//                     Price history of 100 randomly selected Pokemon cards
-//                 </text>
-//             </svg>
-//         </div>
-//     );
-// }
-
-// export default App;
