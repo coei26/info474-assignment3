@@ -26278,9 +26278,9 @@ try {
   var _jsxFileName = "F:\\info474\\info474-assignment3\\src\\App.js", _s = $RefreshSig$();
   const App = () => {
     _s();
-    // interactive
-    // const [selectedCountry, setSelectedCountry] = useState("");
     const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/coei26/info474-assignment3/main/internet_data.csv");
+    // interactive
+    const [selectedCountry, setSelectedCountry] = _react.useState();
     // dimensions of svg
     const width = 900;
     const height = 600;
@@ -26292,7 +26292,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 21,
+            lineNumber: 22,
             columnNumber: 16
           }
         }, "data is loading...")
@@ -26318,6 +26318,7 @@ try {
       const xScale = _d3Scale.scaleBand().domain(countries).range([margin, width - margin]).paddingInner(0.1);
       // creating bars
       const bars = sample.map(d => {
+        const label = d.income === selectedCountry;
         const x = xScale(d.country);
         const y = yScale(d.income);
         const height = yScale(min) - yScale(d.income);
@@ -26326,12 +26327,16 @@ try {
           /*#__PURE__*/_reactDefault.default.createElement("rect", {
             x: x,
             y: y,
-            height: height + 50,
+            height: height + 20,
             width: width,
+            onMouseEnter: () => setSelectedCountry(d.income),
+            style: {
+              fill: label ? "red" : "black"
+            },
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 55,
+              lineNumber: 57,
               columnNumber: 17
             }
           })
@@ -26340,32 +26345,43 @@ try {
       // adding labels
       const countryLabels = sample.map(d => {
         const x = xScale(d.country);
-        const y = height - margin + 15;
+        const y = height - margin + 45;
         return (
           /*#__PURE__*/_reactDefault.default.createElement("text", {
             x: x,
-            y: y + 50,
+            y: y,
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 68,
+              lineNumber: 71,
               columnNumber: 20
             }
           }, d.country)
         );
       });
-      /*const incomeLabels = sample.map((d) => {
-      const label = d.income === selectedCountry
-      const x = xScale(d.country);
-      const y = height + margin - 15
-      return <text x={x} y={y}>{label}</text>
-      })*/
+      const incomeLabels = sample.map(d => {
+        const label = d.income === selectedCountry;
+        const x = xScale(d.country);
+        const y = height + margin - 50;
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("text", {
+            x: x,
+            y: y,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 77,
+              columnNumber: 20
+            }
+          }, label)
+        );
+      });
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 77,
+            lineNumber: 80,
             columnNumber: 13
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26373,14 +26389,14 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 78,
+            lineNumber: 81,
             columnNumber: 17
           }
-        }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+        }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 79,
+            lineNumber: 82,
             columnNumber: 21
           }
         }, "Bar Chart"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
@@ -26389,18 +26405,17 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 80,
+            lineNumber: 83,
             columnNumber: 21
           }
         }, bars, countryLabels)))
       );
     }
   };
-  _s(App, "Jm65JCcgUFoenM4DufkEA80vRVI=", false, function () {
+  _s(App, "aHvVHD9RFx1PP76o8Jwh2ATGigo=", false, function () {
     return [_hooksUseFetch.useFetch];
   });
   _c = App;
-  exports.default = App;
   const getColumn = (data, name) => {
     let values = [];
     for (let i = 0; i < data.length; i++) {
@@ -26408,6 +26423,7 @@ try {
     }
     return values;
   };
+  exports.default = App;
   var _c;
   $RefreshReg$(_c, "App");
   helpers.postlude(module);
