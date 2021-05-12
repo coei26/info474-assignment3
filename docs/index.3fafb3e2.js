@@ -1054,7 +1054,7 @@ try {
   var _reactDomDefault = _parcelHelpers.interopDefault(_reactDom);
   var _App = require("./App");
   var _AppDefault = _parcelHelpers.interopDefault(_App);
-  var _jsxFileName = "F:\\info474\\info474-assignment3\\src\\index.js";
+  var _jsxFileName = "/Users/rishikavikondala/Code/info474-assignment3/src/index.js";
   _reactDomDefault.default.render(/*#__PURE__*/_reactDefault.default.createElement(_AppDefault.default, {
     __self: undefined,
     __source: {
@@ -26272,140 +26272,32 @@ try {
   _parcelHelpers.defineInteropFlag(exports);
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
-  var _hooksUseFetch = require("./hooks/useFetch");
-  var _d3Array = require('d3-array');
-  var _d3Scale = require('d3-scale');
-  var _jsxFileName = "F:\\info474\\info474-assignment3\\src\\App.js", _s = $RefreshSig$();
+  var _componentsVisualization = require('./components/Visualization');
+  require('./components/Writeup');
+  var _jsxFileName = "/Users/rishikavikondala/Code/info474-assignment3/src/App.js";
+  // import { useFetch } from "./hooks/useFetch";
+  // import { extent, filter } from 'd3-array';
+  // import { scaleLinear, scaleBand } from 'd3-scale';
   const App = () => {
-    _s();
-    const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/coei26/info474-assignment3/main/internet_data.csv");
-    // interactive
-    const [selectedCountry, setSelectedCountry] = _react.useState();
-    // dimensions of svg
-    const width = 900;
-    const height = 600;
-    const margin = 50;
-    // display text when data is loading
-    if (loading) {
-      return (
-        /*#__PURE__*/_reactDefault.default.createElement("p", {
-          __self: undefined,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 22,
-            columnNumber: 16
-          }
-        }, "data is loading...")
-      );
-    } else {
-      const sample = ['United States', 'Australia', 'Canada', 'United Kingdom'].map(d => {
-        const row = data.find(v => v['country'] === d);
-        console.log(row);
-        return {
-          country: row.country,
-          income: row.incomeperperson
-        };
-      });
-      console.log(sample);
-      // setting up scale
-      const totalExtent = _d3Array.extent(sample, d => d.income);
-      // ---- y axis
-      const max = totalExtent[1];
-      const min = totalExtent[0] - 30;
-      const yScale = _d3Scale.scaleLinear().domain([min, max]).range([height - margin, margin]);
-      // ---- x axis
-      const countries = sample.map(d => d.country);
-      const xScale = _d3Scale.scaleBand().domain(countries).range([margin, width - margin]).paddingInner(0.1);
-      // creating bars
-      const bars = sample.map(d => {
-        const label = d.income === selectedCountry;
-        const x = xScale(d.country);
-        const y = yScale(d.income);
-        const height = yScale(min) - yScale(d.income);
-        const width = xScale.bandwidth();
-        return (
-          /*#__PURE__*/_reactDefault.default.createElement("rect", {
-            x: x,
-            y: y,
-            height: height + 20,
-            width: width,
-            onMouseEnter: () => setSelectedCountry(d.income),
-            style: {
-              fill: label ? "red" : "black"
-            },
-            __self: undefined,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 57,
-              columnNumber: 17
-            }
-          })
-        );
-      });
-      // adding labels
-      const countryLabels = sample.map(d => {
-        const x = xScale(d.country);
-        const y = height - margin + 45;
-        return (
-          /*#__PURE__*/_reactDefault.default.createElement("text", {
-            x: x,
-            y: y,
-            __self: undefined,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 71,
-              columnNumber: 20
-            }
-          }, d.country)
-        );
-      });
-      return (
-        /*#__PURE__*/_reactDefault.default.createElement("div", {
-          __self: undefined,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 74,
-            columnNumber: 13
-          }
-        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
-          className: "container",
-          __self: undefined,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 75,
-            columnNumber: 17
-          }
-        }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
-          __self: undefined,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 76,
-            columnNumber: 21
-          }
-        }, "Bar Chart - income per person vs. countries"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
-          width: width,
-          height: height,
-          __self: undefined,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 77,
-            columnNumber: 21
-          }
-        }, bars, countryLabels)))
-      );
-    }
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 10,
+          columnNumber: 5
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_componentsVisualization.Visualization, {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 11,
+          columnNumber: 7
+        }
+      }))
+    );
   };
-  _s(App, "aHvVHD9RFx1PP76o8Jwh2ATGigo=", false, function () {
-    return [_hooksUseFetch.useFetch];
-  });
   _c = App;
-  const getColumn = (data, name) => {
-    let values = [];
-    for (let i = 0; i < data.length; i++) {
-      values.push(data[i][name]);
-    }
-    return values;
-  };
   exports.default = App;
   var _c;
   $RefreshReg$(_c, "App");
@@ -26415,307 +26307,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","./hooks/useFetch":"5YU3r","d3-array":"7CLUA","d3-scale":"2UZ4X","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5YU3r":[function(require,module,exports) {
-var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-try {
-  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-  _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "useFetch", function () {
-    return useFetch;
-  });
-  var _d3Fetch = require("d3-fetch");
-  var _react = require("react");
-  var _s = $RefreshSig$();
-  const useFetch = url => {
-    _s();
-    const [data, setData] = _react.useState([]);
-    const [loading, setLoading] = _react.useState(true);
-    async function fetchUrl() {
-      const response = await _d3Fetch.csv(url);
-      setData(response);
-      setLoading(false);
-    }
-    _react.useEffect(() => {
-      fetchUrl();
-    }, []);
-    return [data, loading];
-  };
-  _s(useFetch, "YP7e7Smzxlgf2d3MqLcgRZjo83U=");
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-
-},{"d3-fetch":"3eyo6","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"3eyo6":[function(require,module,exports) {
-var define;
-// https://d3js.org/d3-fetch/ v2.0.0 Copyright 2020 Mike Bostock
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-dsv')) : typeof define === 'function' && define.amd ? define(['exports', 'd3-dsv'], factory) : (global = global || self, factory(global.d3 = global.d3 || ({}), global.d3));
-})(this, function (exports, d3Dsv) {
-  "use strict";
-  function responseBlob(response) {
-    if (!response.ok) throw new Error(response.status + " " + response.statusText);
-    return response.blob();
-  }
-  function blob(input, init) {
-    return fetch(input, init).then(responseBlob);
-  }
-  function responseArrayBuffer(response) {
-    if (!response.ok) throw new Error(response.status + " " + response.statusText);
-    return response.arrayBuffer();
-  }
-  function buffer(input, init) {
-    return fetch(input, init).then(responseArrayBuffer);
-  }
-  function responseText(response) {
-    if (!response.ok) throw new Error(response.status + " " + response.statusText);
-    return response.text();
-  }
-  function text(input, init) {
-    return fetch(input, init).then(responseText);
-  }
-  function dsvParse(parse) {
-    return function (input, init, row) {
-      if (arguments.length === 2 && typeof init === "function") (row = init, init = undefined);
-      return text(input, init).then(function (response) {
-        return parse(response, row);
-      });
-    };
-  }
-  function dsv(delimiter, input, init, row) {
-    if (arguments.length === 3 && typeof init === "function") (row = init, init = undefined);
-    var format = d3Dsv.dsvFormat(delimiter);
-    return text(input, init).then(function (response) {
-      return format.parse(response, row);
-    });
-  }
-  var csv = dsvParse(d3Dsv.csvParse);
-  var tsv = dsvParse(d3Dsv.tsvParse);
-  function image(input, init) {
-    return new Promise(function (resolve, reject) {
-      var image = new Image();
-      for (var key in init) image[key] = init[key];
-      image.onerror = reject;
-      image.onload = function () {
-        resolve(image);
-      };
-      image.src = input;
-    });
-  }
-  function responseJson(response) {
-    if (!response.ok) throw new Error(response.status + " " + response.statusText);
-    if (response.status === 204 || response.status === 205) return;
-    return response.json();
-  }
-  function json(input, init) {
-    return fetch(input, init).then(responseJson);
-  }
-  function parser(type) {
-    return (input, init) => text(input, init).then(text => new DOMParser().parseFromString(text, type));
-  }
-  var xml = parser("application/xml");
-  var html = parser("text/html");
-  var svg = parser("image/svg+xml");
-  exports.blob = blob;
-  exports.buffer = buffer;
-  exports.csv = csv;
-  exports.dsv = dsv;
-  exports.html = html;
-  exports.image = image;
-  exports.json = json;
-  exports.svg = svg;
-  exports.text = text;
-  exports.tsv = tsv;
-  exports.xml = xml;
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-});
-
-},{"d3-dsv":"6T2lj"}],"6T2lj":[function(require,module,exports) {
-var define;
-// https://d3js.org/d3-dsv/ v2.0.0 Copyright 2020 Mike Bostock
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) : typeof define === 'function' && define.amd ? define(['exports'], factory) : (global = global || self, factory(global.d3 = global.d3 || ({})));
-})(this, function (exports) {
-  "use strict";
-  var EOL = {}, EOF = {}, QUOTE = 34, NEWLINE = 10, RETURN = 13;
-  function objectConverter(columns) {
-    return new Function("d", "return {" + columns.map(function (name, i) {
-      return JSON.stringify(name) + ": d[" + i + "] || \"\"";
-    }).join(",") + "}");
-  }
-  function customConverter(columns, f) {
-    var object = objectConverter(columns);
-    return function (row, i) {
-      return f(object(row), i, columns);
-    };
-  }
-  // Compute unique columns in order of discovery.
-  function inferColumns(rows) {
-    var columnSet = Object.create(null), columns = [];
-    rows.forEach(function (row) {
-      for (var column in row) {
-        if (!((column in columnSet))) {
-          columns.push(columnSet[column] = column);
-        }
-      }
-    });
-    return columns;
-  }
-  function pad(value, width) {
-    var s = value + "", length = s.length;
-    return length < width ? new Array(width - length + 1).join(0) + s : s;
-  }
-  function formatYear(year) {
-    return year < 0 ? "-" + pad(-year, 6) : year > 9999 ? "+" + pad(year, 6) : pad(year, 4);
-  }
-  function formatDate(date) {
-    var hours = date.getUTCHours(), minutes = date.getUTCMinutes(), seconds = date.getUTCSeconds(), milliseconds = date.getUTCMilliseconds();
-    return isNaN(date) ? "Invalid Date" : formatYear(date.getUTCFullYear()) + "-" + pad(date.getUTCMonth() + 1, 2) + "-" + pad(date.getUTCDate(), 2) + (milliseconds ? "T" + pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "." + pad(milliseconds, 3) + "Z" : seconds ? "T" + pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "Z" : minutes || hours ? "T" + pad(hours, 2) + ":" + pad(minutes, 2) + "Z" : "");
-  }
-  function dsv(delimiter) {
-    var reFormat = new RegExp("[\"" + delimiter + "\n\r]"), DELIMITER = delimiter.charCodeAt(0);
-    function parse(text, f) {
-      var convert, columns, rows = parseRows(text, function (row, i) {
-        if (convert) return convert(row, i - 1);
-        (columns = row, convert = f ? customConverter(row, f) : objectConverter(row));
-      });
-      rows.columns = columns || [];
-      return rows;
-    }
-    function parseRows(text, f) {
-      var rows = [], // output rows
-      N = text.length, I = 0, // current character index
-      n = 0, // current line number
-      t, // current token
-      eof = N <= 0, // current token followed by EOF?
-      eol = false;
-      // current token followed by EOL?
-      // Strip the trailing newline.
-      if (text.charCodeAt(N - 1) === NEWLINE) --N;
-      if (text.charCodeAt(N - 1) === RETURN) --N;
-      function token() {
-        if (eof) return EOF;
-        if (eol) return (eol = false, EOL);
-        // Unescape quotes.
-        var i, j = I, c;
-        if (text.charCodeAt(j) === QUOTE) {
-          while (I++ < N && text.charCodeAt(I) !== QUOTE || text.charCodeAt(++I) === QUOTE) ;
-          if ((i = I) >= N) eof = true; else if ((c = text.charCodeAt(I++)) === NEWLINE) eol = true; else if (c === RETURN) {
-            eol = true;
-            if (text.charCodeAt(I) === NEWLINE) ++I;
-          }
-          return text.slice(j + 1, i - 1).replace(/""/g, "\"");
-        }
-        // Find next delimiter or newline.
-        while (I < N) {
-          if ((c = text.charCodeAt(i = I++)) === NEWLINE) eol = true; else if (c === RETURN) {
-            eol = true;
-            if (text.charCodeAt(I) === NEWLINE) ++I;
-          } else if (c !== DELIMITER) continue;
-          return text.slice(j, i);
-        }
-        // Return last token before EOF.
-        return (eof = true, text.slice(j, N));
-      }
-      while ((t = token()) !== EOF) {
-        var row = [];
-        while (t !== EOL && t !== EOF) (row.push(t), t = token());
-        if (f && (row = f(row, n++)) == null) continue;
-        rows.push(row);
-      }
-      return rows;
-    }
-    function preformatBody(rows, columns) {
-      return rows.map(function (row) {
-        return columns.map(function (column) {
-          return formatValue(row[column]);
-        }).join(delimiter);
-      });
-    }
-    function format(rows, columns) {
-      if (columns == null) columns = inferColumns(rows);
-      return [columns.map(formatValue).join(delimiter)].concat(preformatBody(rows, columns)).join("\n");
-    }
-    function formatBody(rows, columns) {
-      if (columns == null) columns = inferColumns(rows);
-      return preformatBody(rows, columns).join("\n");
-    }
-    function formatRows(rows) {
-      return rows.map(formatRow).join("\n");
-    }
-    function formatRow(row) {
-      return row.map(formatValue).join(delimiter);
-    }
-    function formatValue(value) {
-      return value == null ? "" : value instanceof Date ? formatDate(value) : reFormat.test(value += "") ? "\"" + value.replace(/"/g, "\"\"") + "\"" : value;
-    }
-    return {
-      parse: parse,
-      parseRows: parseRows,
-      format: format,
-      formatBody: formatBody,
-      formatRows: formatRows,
-      formatRow: formatRow,
-      formatValue: formatValue
-    };
-  }
-  var csv = dsv(",");
-  var csvParse = csv.parse;
-  var csvParseRows = csv.parseRows;
-  var csvFormat = csv.format;
-  var csvFormatBody = csv.formatBody;
-  var csvFormatRows = csv.formatRows;
-  var csvFormatRow = csv.formatRow;
-  var csvFormatValue = csv.formatValue;
-  var tsv = dsv("\t");
-  var tsvParse = tsv.parse;
-  var tsvParseRows = tsv.parseRows;
-  var tsvFormat = tsv.format;
-  var tsvFormatBody = tsv.formatBody;
-  var tsvFormatRows = tsv.formatRows;
-  var tsvFormatRow = tsv.formatRow;
-  var tsvFormatValue = tsv.formatValue;
-  function autoType(object) {
-    for (var key in object) {
-      var value = object[key].trim(), number, m;
-      if (!value) value = null; else if (value === "true") value = true; else if (value === "false") value = false; else if (value === "NaN") value = NaN; else if (!isNaN(number = +value)) value = number; else if (m = value.match(/^([-+]\d{2})?\d{4}(-\d{2}(-\d{2})?)?(T\d{2}:\d{2}(:\d{2}(\.\d{3})?)?(Z|[-+]\d{2}:\d{2})?)?$/)) {
-        if (fixtz && !!m[4] && !m[7]) value = value.replace(/-/g, "/").replace(/T/, " ");
-        value = new Date(value);
-      } else continue;
-      object[key] = value;
-    }
-    return object;
-  }
-  // https://github.com/d3/d3-dsv/issues/45
-  const fixtz = new Date("2019-01-01T00:00").getHours() || new Date("2019-07-01T00:00").getHours();
-  exports.autoType = autoType;
-  exports.csvFormat = csvFormat;
-  exports.csvFormatBody = csvFormatBody;
-  exports.csvFormatRow = csvFormatRow;
-  exports.csvFormatRows = csvFormatRows;
-  exports.csvFormatValue = csvFormatValue;
-  exports.csvParse = csvParse;
-  exports.csvParseRows = csvParseRows;
-  exports.dsvFormat = dsv;
-  exports.tsvFormat = tsvFormat;
-  exports.tsvFormatBody = tsvFormatBody;
-  exports.tsvFormatRow = tsvFormatRow;
-  exports.tsvFormatRows = tsvFormatRows;
-  exports.tsvFormatValue = tsvFormatValue;
-  exports.tsvParse = tsvParse;
-  exports.tsvParseRows = tsvParseRows;
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-});
-
-},{}],"5gA8y":[function(require,module,exports) {
+},{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./components/Visualization":"6rHFy","./components/Writeup":"1I3q9"}],"5gA8y":[function(require,module,exports) {
 "use strict";
 
 exports.interopDefault = function (a) {
@@ -26914,7 +26506,586 @@ function registerExportsForReactRefresh(module) {
   }
 }
 
-},{"react-refresh/runtime":"592mh"}],"7CLUA":[function(require,module,exports) {
+},{"react-refresh/runtime":"592mh"}],"6rHFy":[function(require,module,exports) {
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "Visualization", function () {
+    return Visualization;
+  });
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _d3Array = require('d3-array');
+  var _d3Scale = require('d3-scale');
+  var _d3AxisForReact = require('d3-axis-for-react');
+  var _hooksUseFetch = require('../hooks/useFetch');
+  var _Writeup = require('./Writeup');
+  var _jsxFileName = "/Users/rishikavikondala/Code/info474-assignment3/src/components/Visualization.js", _s = $RefreshSig$();
+  const countryFinder = require("country-finder");
+  const Visualization = () => {
+    _s();
+    const dimensions = {
+      width: 600,
+      height: 500,
+      margin: 50
+    };
+    const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/rishikavikondala/internet-analysis/main/internet.csv");
+    const [showTooltip, setShowTooltip] = _react.useState(false);
+    // define state for our tooltip display status
+    const [tooltipPos, setTooltipPos] = _react.useState({
+      x: 0,
+      y: 0
+    });
+    // define state for tooltip position
+    const [tooltipContent, setTooltipContent] = _react.useState("");
+    // define state for our tooltip content
+    const [colorScheme, setColorScheme] = _react.useState("Color");
+    const [displayContinents, setDisplayContinents] = _react.useState([]);
+    const determineColorMap = () => {
+      if (colorScheme == "Color") {
+        return {
+          "North America": "red",
+          "South America": "blue",
+          "Asia": "green",
+          "Africa": "orange",
+          "Australia": "yellow",
+          "Europe": "purple"
+        };
+      }
+      return {
+        "North America": "black",
+        "South America": "gray",
+        "Asia": "darkgray",
+        "Africa": "silver",
+        "Australia": "lightgray",
+        "Europe": "gainsboro"
+      };
+    };
+    const getLatitude = country => {
+      try {
+        const nameMap = {
+          "Bosnia and Herzegovina": "Bosnia",
+          "Cape Verde": "Cabo Verde",
+          "Democratic Republic of the Congo": "DRC",
+          "Republic of the Congo": "Congo",
+          "Ivory Coast": "Côte d\"Ivoire",
+          "South Korea": "S. Korea",
+          "Laos": "Lao People\"s Democratic Republic",
+          "Libya": "Libyan Arab Jamahiriya",
+          "Federated States of Micronesia": "Micronesia",
+          "Slovak Republic": "Slovakia",
+          "Syria": "Syrian Arab Republic",
+          "United Arab Emirates": "UAE",
+          "United Kingdom": "UK",
+          "United States": "USA",
+          "Czech Republic": "Czechia"
+        };
+        if ((country in nameMap)) {
+          let newCountry = nameMap[country];
+          return countryFinder.byName(newCountry)['lat'];
+        }
+        return countryFinder.byName(country)['lat'];
+      } catch {
+        console.log(country);
+      }
+    };
+    if (loading) {
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("h2", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 53,
+            columnNumber: 12
+          }
+        }, "Loading ...")
+      );
+    } else {
+      const urbanRateExtent = _d3Array.extent(data, point => +point.urbanrate);
+      const xScale = _d3Scale.scaleLinear().domain(urbanRateExtent).range([dimensions.margin, dimensions.width - dimensions.margin]);
+      const internetUseRateExtent = _d3Array.extent(data, point => +point.internetuserate);
+      const yScale = _d3Scale.scaleLinear().domain(internetUseRateExtent).range([dimensions.height - dimensions.margin, dimensions.margin]);
+      const circles = data.map(point => {
+        const radius = 4;
+        const x = xScale(+point.urbanrate);
+        const y = yScale(+point.internetuserate);
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            style: {
+              fill: determineColorMap()[point.continent]
+            },
+            onMouseEnter: event => onPointHover(event),
+            onMouseLeave: () => onPointLeave(),
+            cx: x,
+            cy: y,
+            r: radius,
+            /*determine circle center's position*/
+            urbanrate: point.urbanrate,
+            internetuserate: point.internetuserate,
+            country: point.country,
+            continent: point.continent,
+            latitude: parseFloat(getLatitude(point.country)),
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 65,
+              columnNumber: 14
+            }
+          })
+        );
+      });
+      const tooltip = /*#__PURE__*/_reactDefault.default.createElement("div", {
+        style: {
+          width: "18rem",
+          height: "5rem",
+          position: "absolute",
+          display: `${showTooltip ? "inline" : "none"}`,
+          border: '1px solid black',
+          backgroundColor: "white",
+          left: `${tooltipPos.x}px`,
+          top: `${tooltipPos.y}px`
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 76,
+          columnNumber: 7
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("span", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 82,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 82,
+          columnNumber: 15
+        }
+      }, "Country:"), " ", tooltipContent.country), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 83,
+          columnNumber: 9
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("span", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 84,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 84,
+          columnNumber: 15
+        }
+      }, "Urban Rate:"), " ", tooltipContent.x), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 85,
+          columnNumber: 9
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("span", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 86,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 86,
+          columnNumber: 15
+        }
+      }, "Internet Use Rate:"), " ", tooltipContent.y));
+      const onPointHover = circle => {
+        setTooltipPos({
+          x: circle.pageX + 30,
+          y: circle.pageY
+        });
+        setShowTooltip(true);
+        const target = circle.target;
+        setTooltipContent({
+          x: target.getAttribute("urbanrate"),
+          y: target.getAttribute("internetuserate"),
+          country: target.getAttribute("country")
+        });
+      };
+      const onPointLeave = () => {
+        setShowTooltip(false);
+      };
+      const modifyContinentDisplay = continent => {
+        let newDisplayContinents = displayContinents;
+        if (newDisplayContinents.includes(continent)) {
+          // remove continent if it exists
+          newDisplayContinents = newDisplayContinents.filter(element => {
+            return element !== continent;
+          });
+        } else {
+          newDisplayContinents.push(continent);
+        }
+      };
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", {
+          style: {
+            marginLeft: "auto",
+            marginRight: "auto"
+          },
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 113,
+            columnNumber: 7
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+          style: {
+            textAlign: "center"
+          },
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 114,
+            columnNumber: 9
+          }
+        }, "Internet Use Rate vs. Urban Rate"), /*#__PURE__*/_reactDefault.default.createElement("label", {
+          for: "scheme",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 116,
+            columnNumber: 9
+          }
+        }, "Select color option:"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 116,
+            columnNumber: 57
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("select", {
+          id: "scheme",
+          onChange: () => setColorScheme(scheme.value),
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 117,
+            columnNumber: 9
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("option", {
+          value: "Color",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 118,
+            columnNumber: 11
+          }
+        }, "Color"), /*#__PURE__*/_reactDefault.default.createElement("option", {
+          value: "Grayscale",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 119,
+            columnNumber: 11
+          }
+        }, "Grayscale")), /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 121,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 121,
+            columnNumber: 15
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 122,
+            columnNumber: 9
+          }
+        }, "Select which continents to view:"), /*#__PURE__*/_reactDefault.default.createElement("input", {
+          type: "checkbox",
+          id: "northamerica",
+          name: "northamerica",
+          onChange: modifyContinentDisplay("North America"),
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 123,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("label", {
+          for: "northamerica",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 124,
+            columnNumber: 9
+          }
+        }, "North America"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 124,
+            columnNumber: 56
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("input", {
+          type: "checkbox",
+          id: "southamerica",
+          name: "southamerica",
+          onChange: modifyContinentDisplay("South America"),
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 125,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("label", {
+          for: "southamerica",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 126,
+            columnNumber: 9
+          }
+        }, "South America"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 126,
+            columnNumber: 56
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("input", {
+          type: "checkbox",
+          id: "asia",
+          name: "asia",
+          onChange: modifyContinentDisplay("Asia"),
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 127,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("label", {
+          for: "asia",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 128,
+            columnNumber: 9
+          }
+        }, "Asia"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 128,
+            columnNumber: 39
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("input", {
+          type: "checkbox",
+          id: "africa",
+          name: "africa",
+          onChange: modifyContinentDisplay("Africa"),
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 129,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("label", {
+          for: "africa",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 130,
+            columnNumber: 9
+          }
+        }, "Africa"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 130,
+            columnNumber: 43
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("input", {
+          type: "checkbox",
+          id: "australia",
+          name: "australia",
+          onChange: modifyContinentDisplay("Australia"),
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 131,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("label", {
+          for: "australia",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 132,
+            columnNumber: 9
+          }
+        }, "Australia"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 132,
+            columnNumber: 49
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("input", {
+          type: "checkbox",
+          id: "europe",
+          name: "europe",
+          onChange: modifyContinentDisplay("Europe"),
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 133,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("label", {
+          for: "europe",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 134,
+            columnNumber: 9
+          }
+        }, "Europe"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 134,
+            columnNumber: 43
+          }
+        }), tooltip, /*#__PURE__*/_reactDefault.default.createElement("svg", {
+          style: {
+            display: "block",
+            margin: "auto"
+          },
+          width: dimensions.width,
+          height: dimensions.height,
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 136,
+            columnNumber: 9
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("text", {
+          className: "title",
+          style: {
+            textAnchor: "middle"
+          },
+          x: dimensions.width / 2,
+          y: dimensions.margin - 20,
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 137,
+            columnNumber: 11
+          }
+        }, "How does having a higher urban rate in a country affect the rate of internet use?"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+          style: {
+            textAnchor: "middle"
+          },
+          className: "x-label",
+          x: dimensions.width / 2,
+          y: dimensions.height - dimensions.margin + 35,
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 140,
+            columnNumber: 11
+          }
+        }, "Urban Rate"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+          className: "y-label",
+          transform: `translate(${dimensions.margin - 30}, ${dimensions.height / 2})rotate(-90)`,
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 143,
+            columnNumber: 11
+          }
+        }, "Internet Use Rate"), circles, /*#__PURE__*/_reactDefault.default.createElement("g", {
+          transform: `translate(${dimensions.margin}, 0)`,
+          className: "axisLeft",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 149,
+            columnNumber: 11
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_d3AxisForReact.Axis, {
+          orient: _d3AxisForReact.Orient.left,
+          scale: yScale,
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 150,
+            columnNumber: 13
+          }
+        })), /*#__PURE__*/_reactDefault.default.createElement("g", {
+          transform: `translate(0, ${dimensions.height - dimensions.margin})`,
+          className: "axisBottom",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 152,
+            columnNumber: 11
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_d3AxisForReact.Axis, {
+          orient: _d3AxisForReact.Orient.bottom,
+          scale: xScale,
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 153,
+            columnNumber: 13
+          }
+        }))), /*#__PURE__*/_reactDefault.default.createElement(_Writeup.Writeup, {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 156,
+            columnNumber: 9
+          }
+        }))
+      );
+    }
+  };
+  _s(Visualization, "BVB0dGjI1WRixybqdMX/GvtNv94=", false, function () {
+    return [_hooksUseFetch.useFetch];
+  });
+  _c = Visualization;
+  var _c;
+  $RefreshReg$(_c, "Visualization");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","d3-array":"7CLUA","d3-scale":"2UZ4X","d3-axis-for-react":"3RPRP","../hooks/useFetch":"5YU3r","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","country-finder":"5pVjQ","./Writeup":"1I3q9"}],"7CLUA":[function(require,module,exports) {
 var define;
 // https://d3js.org/d3-array/ v2.12.1 Copyright 2021 Mike Bostock
 (function (global, factory) {
@@ -30922,6 +31093,629 @@ var define;
   });
 });
 
-},{"d3-time":"JGVPX"}]},["1j6wU","3Imd1","5rkFb"], "5rkFb", "parcelRequiref024")
+},{"d3-time":"JGVPX"}],"3RPRP":[function(require,module,exports) {
+var React = require('react');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function identity(x) {
+  return x;
+}
+/**
+ * Instead of a component for each orientation (like AxisLeft, AxisRight),
+ * we provide a value from this Orient object. Provide a value, like
+ * Orient.left, to the `orient` prop of the Axis component
+ * to place the axis on the left.
+ */
+
+
+exports.Orient = void 0;
+
+(function (Orient) {
+  Orient[Orient["top"] = 1] = "top";
+  Orient[Orient["right"] = 2] = "right";
+  Orient[Orient["bottom"] = 3] = "bottom";
+  Orient[Orient["left"] = 4] = "left";
+})(exports.Orient || (exports.Orient = {}));
+
+function translateX(x) {
+  return "translate(" + x + ",0)";
+}
+
+function translateY(y) {
+  return "translate(0," + y + ")";
+}
+/**
+ * The axis component. This renders an axis, within a
+ * `g` element, for use in a chart.
+ */
+
+
+const Axis = ({
+  scale,
+  ticks,
+  tickArguments = [],
+  tickValues = null,
+  tickFormat = null,
+  tickSize,
+  tickSizeInner = 6,
+  tickSizeOuter = 6,
+  tickPadding = 3,
+  tickTextProps = {},
+  tickLineProps = {},
+  domainPathProps = {},
+  orient = exports.Orient.bottom,
+  offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5
+}) => {
+  if (tickSize) {
+    tickSizeInner = tickSize;
+    tickSizeOuter = tickSize;
+  }
+
+  if (ticks) {
+    tickArguments = ticks;
+  }
+
+  function number(scale) {
+    return d => {
+      const value = scale(d);
+      return value === undefined ? 0 : +value;
+    };
+  }
+
+  function center(scale, offset) {
+    if (scale.bandwidth) {
+      offset = Math.max(0, scale.bandwidth() - offset * 2) / 2;
+    }
+
+    if (scale.round()) offset = Math.round(offset);
+    return d => {
+      const value = scale(d);
+      return value === undefined ? 0 : value + offset;
+    };
+  }
+
+  const k = orient === exports.Orient.top || orient === exports.Orient.left ? -1 : 1,
+        x = orient === exports.Orient.left || orient === exports.Orient.right ? "x" : "y",
+        transform = orient === exports.Orient.top || orient === exports.Orient.bottom ? translateX : translateY; // Rendering
+
+  const values = tickValues == null ? scale.ticks ? scale.ticks.apply(scale, tickArguments) : scale.domain() : tickValues,
+        format = tickFormat == null ? "tickFormat" in scale ? scale.tickFormat.apply(scale, tickArguments) : identity : tickFormat,
+        spacing = Math.max(tickSizeInner, 0) + tickPadding,
+        range = scale.range(),
+        range0 = +range[0] + offset,
+        range1 = +range[range.length - 1] + offset,
+        position = (scale.bandwidth ? center : number)(scale.copy(), offset);
+  const domainPath = orient === exports.Orient.left || orient === exports.Orient.right ? tickSizeOuter ? "M" + k * tickSizeOuter + "," + range0 + "H" + offset + "V" + range1 + "H" + k * tickSizeOuter : "M" + offset + "," + range0 + "V" + range1 : tickSizeOuter ? "M" + range0 + "," + k * tickSizeOuter + "V" + offset + "H" + range1 + "V" + k * tickSizeOuter : "M" + range0 + "," + offset + "H" + range1;
+  const lineProps = {
+    [x + "2"]: k * tickSizeInner
+  };
+  const textProps = {
+    [x]: k * spacing
+  };
+  return /*#__PURE__*/React__default['default'].createElement("g", null, values.map((tick, i) => /*#__PURE__*/React__default['default'].createElement("g", {
+    className: "tick",
+    key: i,
+    transform: transform(position(tick) + offset)
+  }, tickLineProps && /*#__PURE__*/React__default['default'].createElement("line", _extends({
+    stroke: "currentColor"
+  }, lineProps, tickLineProps)), tickTextProps && /*#__PURE__*/React__default['default'].createElement("text", _extends({
+    fill: "currentColor",
+    dy: orient === exports.Orient.top ? "0em" : orient === exports.Orient.bottom ? "0.71em" : "0.32em",
+    fontSize: "10",
+    fontFamily: "sans-serif",
+    textAnchor: orient === exports.Orient.right ? "start" : orient === exports.Orient.left ? "end" : "middle"
+  }, textProps, tickTextProps), format(tick)))), domainPathProps && /*#__PURE__*/React__default['default'].createElement("path", _extends({
+    className: "domain",
+    stroke: "currentColor",
+    fill: "transparent",
+    d: domainPath
+  }, domainPathProps)));
+};
+
+exports.Axis = Axis;
+
+},{"react":"3b2NM"}],"5YU3r":[function(require,module,exports) {
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "useFetch", function () {
+    return useFetch;
+  });
+  var _d3Fetch = require("d3-fetch");
+  var _react = require("react");
+  var _s = $RefreshSig$();
+  const useFetch = url => {
+    _s();
+    const [data, setData] = _react.useState([]);
+    const [loading, setLoading] = _react.useState(true);
+    async function fetchUrl() {
+      const response = await _d3Fetch.csv(url);
+      setData(response);
+      setLoading(false);
+    }
+    _react.useEffect(() => {
+      fetchUrl();
+    }, []);
+    return [data, loading];
+  };
+  _s(useFetch, "YP7e7Smzxlgf2d3MqLcgRZjo83U=");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"d3-fetch":"3eyo6","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"3eyo6":[function(require,module,exports) {
+var define;
+// https://d3js.org/d3-fetch/ v2.0.0 Copyright 2020 Mike Bostock
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-dsv')) : typeof define === 'function' && define.amd ? define(['exports', 'd3-dsv'], factory) : (global = global || self, factory(global.d3 = global.d3 || ({}), global.d3));
+})(this, function (exports, d3Dsv) {
+  "use strict";
+  function responseBlob(response) {
+    if (!response.ok) throw new Error(response.status + " " + response.statusText);
+    return response.blob();
+  }
+  function blob(input, init) {
+    return fetch(input, init).then(responseBlob);
+  }
+  function responseArrayBuffer(response) {
+    if (!response.ok) throw new Error(response.status + " " + response.statusText);
+    return response.arrayBuffer();
+  }
+  function buffer(input, init) {
+    return fetch(input, init).then(responseArrayBuffer);
+  }
+  function responseText(response) {
+    if (!response.ok) throw new Error(response.status + " " + response.statusText);
+    return response.text();
+  }
+  function text(input, init) {
+    return fetch(input, init).then(responseText);
+  }
+  function dsvParse(parse) {
+    return function (input, init, row) {
+      if (arguments.length === 2 && typeof init === "function") (row = init, init = undefined);
+      return text(input, init).then(function (response) {
+        return parse(response, row);
+      });
+    };
+  }
+  function dsv(delimiter, input, init, row) {
+    if (arguments.length === 3 && typeof init === "function") (row = init, init = undefined);
+    var format = d3Dsv.dsvFormat(delimiter);
+    return text(input, init).then(function (response) {
+      return format.parse(response, row);
+    });
+  }
+  var csv = dsvParse(d3Dsv.csvParse);
+  var tsv = dsvParse(d3Dsv.tsvParse);
+  function image(input, init) {
+    return new Promise(function (resolve, reject) {
+      var image = new Image();
+      for (var key in init) image[key] = init[key];
+      image.onerror = reject;
+      image.onload = function () {
+        resolve(image);
+      };
+      image.src = input;
+    });
+  }
+  function responseJson(response) {
+    if (!response.ok) throw new Error(response.status + " " + response.statusText);
+    if (response.status === 204 || response.status === 205) return;
+    return response.json();
+  }
+  function json(input, init) {
+    return fetch(input, init).then(responseJson);
+  }
+  function parser(type) {
+    return (input, init) => text(input, init).then(text => new DOMParser().parseFromString(text, type));
+  }
+  var xml = parser("application/xml");
+  var html = parser("text/html");
+  var svg = parser("image/svg+xml");
+  exports.blob = blob;
+  exports.buffer = buffer;
+  exports.csv = csv;
+  exports.dsv = dsv;
+  exports.html = html;
+  exports.image = image;
+  exports.json = json;
+  exports.svg = svg;
+  exports.text = text;
+  exports.tsv = tsv;
+  exports.xml = xml;
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+});
+
+},{"d3-dsv":"6T2lj"}],"6T2lj":[function(require,module,exports) {
+var define;
+// https://d3js.org/d3-dsv/ v2.0.0 Copyright 2020 Mike Bostock
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) : typeof define === 'function' && define.amd ? define(['exports'], factory) : (global = global || self, factory(global.d3 = global.d3 || ({})));
+})(this, function (exports) {
+  "use strict";
+  var EOL = {}, EOF = {}, QUOTE = 34, NEWLINE = 10, RETURN = 13;
+  function objectConverter(columns) {
+    return new Function("d", "return {" + columns.map(function (name, i) {
+      return JSON.stringify(name) + ": d[" + i + "] || \"\"";
+    }).join(",") + "}");
+  }
+  function customConverter(columns, f) {
+    var object = objectConverter(columns);
+    return function (row, i) {
+      return f(object(row), i, columns);
+    };
+  }
+  // Compute unique columns in order of discovery.
+  function inferColumns(rows) {
+    var columnSet = Object.create(null), columns = [];
+    rows.forEach(function (row) {
+      for (var column in row) {
+        if (!((column in columnSet))) {
+          columns.push(columnSet[column] = column);
+        }
+      }
+    });
+    return columns;
+  }
+  function pad(value, width) {
+    var s = value + "", length = s.length;
+    return length < width ? new Array(width - length + 1).join(0) + s : s;
+  }
+  function formatYear(year) {
+    return year < 0 ? "-" + pad(-year, 6) : year > 9999 ? "+" + pad(year, 6) : pad(year, 4);
+  }
+  function formatDate(date) {
+    var hours = date.getUTCHours(), minutes = date.getUTCMinutes(), seconds = date.getUTCSeconds(), milliseconds = date.getUTCMilliseconds();
+    return isNaN(date) ? "Invalid Date" : formatYear(date.getUTCFullYear()) + "-" + pad(date.getUTCMonth() + 1, 2) + "-" + pad(date.getUTCDate(), 2) + (milliseconds ? "T" + pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "." + pad(milliseconds, 3) + "Z" : seconds ? "T" + pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "Z" : minutes || hours ? "T" + pad(hours, 2) + ":" + pad(minutes, 2) + "Z" : "");
+  }
+  function dsv(delimiter) {
+    var reFormat = new RegExp("[\"" + delimiter + "\n\r]"), DELIMITER = delimiter.charCodeAt(0);
+    function parse(text, f) {
+      var convert, columns, rows = parseRows(text, function (row, i) {
+        if (convert) return convert(row, i - 1);
+        (columns = row, convert = f ? customConverter(row, f) : objectConverter(row));
+      });
+      rows.columns = columns || [];
+      return rows;
+    }
+    function parseRows(text, f) {
+      var rows = [], // output rows
+      N = text.length, I = 0, // current character index
+      n = 0, // current line number
+      t, // current token
+      eof = N <= 0, // current token followed by EOF?
+      eol = false;
+      // current token followed by EOL?
+      // Strip the trailing newline.
+      if (text.charCodeAt(N - 1) === NEWLINE) --N;
+      if (text.charCodeAt(N - 1) === RETURN) --N;
+      function token() {
+        if (eof) return EOF;
+        if (eol) return (eol = false, EOL);
+        // Unescape quotes.
+        var i, j = I, c;
+        if (text.charCodeAt(j) === QUOTE) {
+          while (I++ < N && text.charCodeAt(I) !== QUOTE || text.charCodeAt(++I) === QUOTE) ;
+          if ((i = I) >= N) eof = true; else if ((c = text.charCodeAt(I++)) === NEWLINE) eol = true; else if (c === RETURN) {
+            eol = true;
+            if (text.charCodeAt(I) === NEWLINE) ++I;
+          }
+          return text.slice(j + 1, i - 1).replace(/""/g, "\"");
+        }
+        // Find next delimiter or newline.
+        while (I < N) {
+          if ((c = text.charCodeAt(i = I++)) === NEWLINE) eol = true; else if (c === RETURN) {
+            eol = true;
+            if (text.charCodeAt(I) === NEWLINE) ++I;
+          } else if (c !== DELIMITER) continue;
+          return text.slice(j, i);
+        }
+        // Return last token before EOF.
+        return (eof = true, text.slice(j, N));
+      }
+      while ((t = token()) !== EOF) {
+        var row = [];
+        while (t !== EOL && t !== EOF) (row.push(t), t = token());
+        if (f && (row = f(row, n++)) == null) continue;
+        rows.push(row);
+      }
+      return rows;
+    }
+    function preformatBody(rows, columns) {
+      return rows.map(function (row) {
+        return columns.map(function (column) {
+          return formatValue(row[column]);
+        }).join(delimiter);
+      });
+    }
+    function format(rows, columns) {
+      if (columns == null) columns = inferColumns(rows);
+      return [columns.map(formatValue).join(delimiter)].concat(preformatBody(rows, columns)).join("\n");
+    }
+    function formatBody(rows, columns) {
+      if (columns == null) columns = inferColumns(rows);
+      return preformatBody(rows, columns).join("\n");
+    }
+    function formatRows(rows) {
+      return rows.map(formatRow).join("\n");
+    }
+    function formatRow(row) {
+      return row.map(formatValue).join(delimiter);
+    }
+    function formatValue(value) {
+      return value == null ? "" : value instanceof Date ? formatDate(value) : reFormat.test(value += "") ? "\"" + value.replace(/"/g, "\"\"") + "\"" : value;
+    }
+    return {
+      parse: parse,
+      parseRows: parseRows,
+      format: format,
+      formatBody: formatBody,
+      formatRows: formatRows,
+      formatRow: formatRow,
+      formatValue: formatValue
+    };
+  }
+  var csv = dsv(",");
+  var csvParse = csv.parse;
+  var csvParseRows = csv.parseRows;
+  var csvFormat = csv.format;
+  var csvFormatBody = csv.formatBody;
+  var csvFormatRows = csv.formatRows;
+  var csvFormatRow = csv.formatRow;
+  var csvFormatValue = csv.formatValue;
+  var tsv = dsv("\t");
+  var tsvParse = tsv.parse;
+  var tsvParseRows = tsv.parseRows;
+  var tsvFormat = tsv.format;
+  var tsvFormatBody = tsv.formatBody;
+  var tsvFormatRows = tsv.formatRows;
+  var tsvFormatRow = tsv.formatRow;
+  var tsvFormatValue = tsv.formatValue;
+  function autoType(object) {
+    for (var key in object) {
+      var value = object[key].trim(), number, m;
+      if (!value) value = null; else if (value === "true") value = true; else if (value === "false") value = false; else if (value === "NaN") value = NaN; else if (!isNaN(number = +value)) value = number; else if (m = value.match(/^([-+]\d{2})?\d{4}(-\d{2}(-\d{2})?)?(T\d{2}:\d{2}(:\d{2}(\.\d{3})?)?(Z|[-+]\d{2}:\d{2})?)?$/)) {
+        if (fixtz && !!m[4] && !m[7]) value = value.replace(/-/g, "/").replace(/T/, " ");
+        value = new Date(value);
+      } else continue;
+      object[key] = value;
+    }
+    return object;
+  }
+  // https://github.com/d3/d3-dsv/issues/45
+  const fixtz = new Date("2019-01-01T00:00").getHours() || new Date("2019-07-01T00:00").getHours();
+  exports.autoType = autoType;
+  exports.csvFormat = csvFormat;
+  exports.csvFormatBody = csvFormatBody;
+  exports.csvFormatRow = csvFormatRow;
+  exports.csvFormatRows = csvFormatRows;
+  exports.csvFormatValue = csvFormatValue;
+  exports.csvParse = csvParse;
+  exports.csvParseRows = csvParseRows;
+  exports.dsvFormat = dsv;
+  exports.tsvFormat = tsvFormat;
+  exports.tsvFormatBody = tsvFormatBody;
+  exports.tsvFormatRow = tsvFormatRow;
+  exports.tsvFormatRows = tsvFormatRows;
+  exports.tsvFormatValue = tsvFormatValue;
+  exports.tsvParse = tsvParse;
+  exports.tsvParseRows = tsvParseRows;
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+});
+
+},{}],"5pVjQ":[function(require,module,exports) {
+const countries = require('./src/data/countries.json')
+const utils = require('./src/util')
+
+/**
+ * find country by country code 
+ * eg: US || us for USA
+ *     ET || et || ETH || eth for Ethiopia
+ * @param {String} code 
+ */
+const byCountryCode = code => {
+    code = code.toUpperCase()
+    if (code.length == 2) {
+        return countries.find(c => c.iso2 == code)
+    } else {
+        return countries.find(c => c.iso3 == code)
+    }
+}
+
+/**
+ * find by using unique number id of a country
+ * @param {Integer} id 
+ */
+const byId = id => {
+    return countries.find(c => c.id == id)
+}
+
+/**
+ * find by using country name
+ * eg: Ethiopia
+ * @param {String} name 
+ */
+const byName = name => {
+    name = name.toLowerCase()
+
+    return countries.find(c => c.name.toLowerCase() == name)
+}
+
+/**
+ * by continent name
+ * eg: Africa
+ *     Asia
+ * 
+ */
+const byContinent = continent => {
+    continent = continent.toLowerCase()
+
+    return countries.filter(c => c.continent.toLowerCase() == continent)
+}
+
+/**
+ * a list of available countries with the following parameters
+ * - id
+ * - name
+ * - iso2
+ * - iso3
+ * - continent
+ * - lat
+ * - long
+ */
+
+const all = () => {
+    return countries
+}
+
+module.exports = {
+    byCountryCode,
+    byId,
+    byName,
+    byContinent,
+    all
+}
+},{"./src/data/countries.json":"48NBh","./src/util":"27Tqx"}],"48NBh":[function(require,module,exports) {
+module.exports = JSON.parse("[{\"id\":4,\"name\":\"Afghanistan\",\"iso2\":\"AF\",\"iso3\":\"AFG\",\"continent\":\"Asia\",\"lat\":\"33.93911\",\"long\":\"67.709953\"},{\"id\":8,\"name\":\"Albania\",\"iso2\":\"AL\",\"iso3\":\"ALB\",\"continent\":\"Europe\",\"lat\":\"41.153332\",\"long\":\"20.168331\"},{\"id\":12,\"name\":\"Algeria\",\"iso2\":\"DZ\",\"iso3\":\"DZA\",\"continent\":\"Africa\",\"lat\":\"28.033886\",\"long\":\"1.659626\"},{\"id\":16,\"name\":\"American Samoa\",\"iso2\":\"AS\",\"iso3\":\"ASM\",\"continent\":\"Oceania\",\"lat\":\"-14.270972\",\"long\":\"-170.132217\"},{\"id\":20,\"name\":\"Andorra\",\"iso2\":\"AD\",\"iso3\":\"AND\",\"continent\":\"Europe\",\"lat\":\"42.546245\",\"long\":\"1.601554\"},{\"id\":24,\"name\":\"Angola\",\"iso2\":\"AO\",\"iso3\":\"AGO\",\"continent\":\"Africa\",\"lat\":\"-11.202692\",\"long\":\"17.873887\"},{\"id\":660,\"name\":\"Anguilla\",\"iso2\":\"AI\",\"iso3\":\"AIA\",\"continent\":\"North America\",\"lat\":\"18.220554\",\"long\":\"-63.068615\"},{\"id\":10,\"name\":\"Antarctica\",\"iso2\":\"AQ\",\"iso3\":\"ATA\",\"continent\":\"Antarctica\",\"lat\":\"-75.250973\",\"long\":\"-0.071389\"},{\"id\":28,\"name\":\"Antigua and Barbuda\",\"iso2\":\"AG\",\"iso3\":\"ATG\",\"continent\":\"North America\",\"lat\":\"17.060816\",\"long\":\"-61.796428\"},{\"id\":32,\"name\":\"Argentina\",\"iso2\":\"AR\",\"iso3\":\"ARG\",\"continent\":\"South America\",\"lat\":\"-38.416097\",\"long\":\"-63.616672\"},{\"id\":51,\"name\":\"Armenia\",\"iso2\":\"AM\",\"iso3\":\"ARM\",\"continent\":\"Europe\",\"lat\":\"40.069099\",\"long\":\"45.038189\"},{\"id\":533,\"name\":\"Aruba\",\"iso2\":\"AW\",\"iso3\":\"ABW\",\"continent\":\"North America\",\"lat\":\"12.52111\",\"long\":\"-69.968338\"},{\"id\":36,\"name\":\"Australia\",\"iso2\":\"AU\",\"iso3\":\"AUS\",\"continent\":\"Oceania\",\"lat\":\"-25.274398\",\"long\":\"133.775136\"},{\"id\":40,\"name\":\"Austria\",\"iso2\":\"AT\",\"iso3\":\"AUT\",\"continent\":\"Europe\",\"lat\":\"47.516231\",\"long\":\"14.550072\"},{\"id\":31,\"name\":\"Azerbaijan\",\"iso2\":\"AZ\",\"iso3\":\"AZE\",\"continent\":\"Europe\",\"lat\":\"40.143105\",\"long\":\"47.576927\"},{\"id\":44,\"name\":\"Bahamas\",\"iso2\":\"BS\",\"iso3\":\"BHS\",\"continent\":\"North America\",\"lat\":\"25.03428\",\"long\":\"-77.39628\"},{\"id\":48,\"name\":\"Bahrain\",\"iso2\":\"BH\",\"iso3\":\"BHR\",\"continent\":\"Asia\",\"lat\":\"25.930414\",\"long\":\"50.637772\"},{\"id\":50,\"name\":\"Bangladesh\",\"iso2\":\"BD\",\"iso3\":\"BGD\",\"continent\":\"Asia\",\"lat\":\"23.684994\",\"long\":\"90.356331\"},{\"id\":52,\"name\":\"Barbados\",\"iso2\":\"BB\",\"iso3\":\"BRB\",\"continent\":\"North America\",\"lat\":\"13.193887\",\"long\":\"-59.543198\"},{\"id\":112,\"name\":\"Belarus\",\"iso2\":\"BY\",\"iso3\":\"BLR\",\"continent\":\"Europe\",\"lat\":\"53.709807\",\"long\":\"27.953389\"},{\"id\":56,\"name\":\"Belgium\",\"iso2\":\"BE\",\"iso3\":\"BEL\",\"continent\":\"Europe\",\"lat\":\"50.503887\",\"long\":\"4.469936\"},{\"id\":84,\"name\":\"Belize\",\"iso2\":\"BZ\",\"iso3\":\"BLZ\",\"continent\":\"North America\",\"lat\":\"17.189877\",\"long\":\"-88.49765\"},{\"id\":204,\"name\":\"Benin\",\"iso2\":\"BJ\",\"iso3\":\"BEN\",\"continent\":\"Africa\",\"lat\":\"9.30769\",\"long\":\"2.315834\"},{\"id\":60,\"name\":\"Bermuda\",\"iso2\":\"BM\",\"iso3\":\"BMU\",\"continent\":\"North America\",\"lat\":\"32.321384\",\"long\":\"-64.75737\"},{\"id\":64,\"name\":\"Bhutan\",\"iso2\":\"BT\",\"iso3\":\"BTN\",\"continent\":\"Asia\",\"lat\":\"27.514162\",\"long\":\"90.433601\"},{\"id\":68,\"name\":\"Bolivia\",\"iso2\":\"BO\",\"iso3\":\"BOL\",\"continent\":\"South America\",\"lat\":\"-16.290154\",\"long\":\"-63.588653\"},{\"id\":70,\"name\":\"Bosnia\",\"iso2\":\"BA\",\"iso3\":\"BIH\",\"continent\":\"Europe\",\"lat\":\"43.915886\",\"long\":\"17.679076\"},{\"id\":72,\"name\":\"Botswana\",\"iso2\":\"BW\",\"iso3\":\"BWA\",\"continent\":\"Africa\",\"lat\":\"-22.328474\",\"long\":\"24.684866\"},{\"id\":74,\"name\":\"Bouvet Island\",\"iso2\":\"BV\",\"iso3\":\"BVT\",\"continent\":\"Antarctica\",\"lat\":\"-54.423199\",\"long\":\"3.413194\"},{\"id\":76,\"name\":\"Brazil\",\"iso2\":\"BR\",\"iso3\":\"BRA\",\"continent\":\"South America\",\"lat\":\"-14.235004\",\"long\":\"-51.92528\"},{\"id\":86,\"name\":\"British Indian Ocean Territory\",\"iso2\":\"IO\",\"iso3\":\"IOT\",\"continent\":\"Asia\",\"lat\":\"-6.343194\",\"long\":\"71.876519\"},{\"id\":96,\"name\":\"Brunei\",\"iso2\":\"BN\",\"iso3\":\"BRN\",\"continent\":\"Asia\",\"lat\":\"4.535277\",\"long\":\"114.727669\"},{\"id\":100,\"name\":\"Bulgaria\",\"iso2\":\"BG\",\"iso3\":\"BGR\",\"continent\":\"Europe\",\"lat\":\"42.733883\",\"long\":\"25.48583\"},{\"id\":854,\"name\":\"Burkina Faso\",\"iso2\":\"BF\",\"iso3\":\"BFA\",\"continent\":\"Africa\",\"lat\":\"12.238333\",\"long\":\"-1.561593\"},{\"id\":108,\"name\":\"Burundi\",\"iso2\":\"BI\",\"iso3\":\"BDI\",\"continent\":\"Africa\",\"lat\":\"-3.373056\",\"long\":\"29.918886\"},{\"id\":132,\"name\":\"Cabo Verde\",\"iso2\":\"CV\",\"iso3\":\"CPV\",\"continent\":\"Africa\",\"lat\":\"16.002082\",\"long\":\"-24.013197\"},{\"id\":116,\"name\":\"Cambodia\",\"iso2\":\"KH\",\"iso3\":\"KHM\",\"continent\":\"Asia\",\"lat\":\"12.565679\",\"long\":\"104.990963\"},{\"id\":120,\"name\":\"Cameroon\",\"iso2\":\"CM\",\"iso3\":\"CMR\",\"continent\":\"Africa\",\"lat\":\"7.369722\",\"long\":\"12.354722\"},{\"id\":124,\"name\":\"Canada\",\"iso2\":\"CA\",\"iso3\":\"CAN\",\"continent\":\"North America\",\"lat\":\"56.130366\",\"long\":\"-106.346771\"},{\"id\":136,\"name\":\"Cayman Islands\",\"iso2\":\"KY\",\"iso3\":\"CYM\",\"continent\":\"North America\",\"lat\":\"19.513469\",\"long\":\"-80.566956\"},{\"id\":140,\"name\":\"Central African Republic\",\"iso2\":\"CF\",\"iso3\":\"CAF\",\"continent\":\"Africa\",\"lat\":\"6.611111\",\"long\":\"20.939444\"},{\"id\":535,\"name\":\"Caribbean Netherlands\",\"iso2\":\"BQ\",\"iso3\":\"BES\",\"continent\":\"North America\",\"lat\":12.2,\"long\":-68.26},{\"id\":148,\"name\":\"Chad\",\"iso2\":\"TD\",\"iso3\":\"TCD\",\"continent\":\"Africa\",\"lat\":\"15.454166\",\"long\":\"18.732207\"},{\"id\":152,\"name\":\"Chile\",\"iso2\":\"CL\",\"iso3\":\"CHL\",\"continent\":\"South America\",\"lat\":\"-35.675147\",\"long\":\"-71.542969\"},{\"id\":156,\"name\":\"China\",\"iso2\":\"CN\",\"iso3\":\"CHN\",\"continent\":\"Asia\",\"lat\":\"35.86166\",\"long\":\"104.195397\"},{\"id\":162,\"name\":\"Christmas Island\",\"iso2\":\"CX\",\"iso3\":\"CXR\",\"continent\":\"Asia\",\"lat\":\"-10.447525\",\"long\":\"105.690449\"},{\"id\":166,\"name\":\"Cocos (Keeling) Islands\",\"iso2\":\"CC\",\"iso3\":\"CCK\",\"continent\":\"Asia\",\"lat\":\"-12.164165\",\"long\":\"96.870956\"},{\"id\":170,\"name\":\"Colombia\",\"iso2\":\"CO\",\"iso3\":\"COL\",\"continent\":\"South America\",\"lat\":\"4.570868\",\"long\":\"-74.297333\"},{\"id\":174,\"name\":\"Comoros\",\"iso2\":\"KM\",\"iso3\":\"COM\",\"continent\":\"Africa\",\"lat\":\"-11.875001\",\"long\":\"43.872219\"},{\"id\":178,\"name\":\"Congo\",\"iso2\":\"CG\",\"iso3\":\"COG\",\"continent\":\"Africa\",\"lat\":\"-0.228021\",\"long\":\"15.827659\"},{\"id\":180,\"name\":\"DRC\",\"iso2\":\"CD\",\"iso3\":\"COD\",\"continent\":\"Africa\",\"lat\":\"-4.038333\",\"long\":\"21.758664\"},{\"id\":184,\"name\":\"Cook Islands\",\"iso2\":\"CK\",\"iso3\":\"COK\",\"continent\":\"Oceania\",\"lat\":\"-21.236736\",\"long\":\"-159.777671\"},{\"id\":188,\"name\":\"Costa Rica\",\"iso2\":\"CR\",\"iso3\":\"CRI\",\"continent\":\"North America\",\"lat\":\"9.748917\",\"long\":\"-83.753428\"},{\"id\":384,\"name\":\"Côte d\\\"Ivoire\",\"iso2\":\"CI\",\"iso3\":\"CIV\",\"continent\":\"Africa\",\"lat\":\"7.539989\",\"long\":\"-5.54708\"},{\"id\":191,\"name\":\"Croatia\",\"iso2\":\"HR\",\"iso3\":\"HRV\",\"continent\":\"Europe\",\"lat\":\"45.1\",\"long\":\"15.2\"},{\"id\":192,\"name\":\"Cuba\",\"iso2\":\"CU\",\"iso3\":\"CUB\",\"continent\":\"North America\",\"lat\":\"21.521757\",\"long\":\"-77.781167\"},{\"id\":531,\"name\":\"Curaçao\",\"iso2\":\"CW\",\"iso3\":\"CUW\",\"continent\":\"North America\",\"lat\":12.15,\"long\":-68.97},{\"id\":196,\"name\":\"Cyprus\",\"iso2\":\"CY\",\"iso3\":\"CYP\",\"continent\":\"Europe\",\"lat\":\"35.126413\",\"long\":\"33.429859\"},{\"id\":203,\"name\":\"Czechia\",\"iso2\":\"CZ\",\"iso3\":\"CZE\",\"continent\":\"Europe\",\"lat\":\"49.817492\",\"long\":\"15.472962\"},{\"id\":208,\"name\":\"Denmark\",\"iso2\":\"DK\",\"iso3\":\"DNK\",\"continent\":\"Europe\",\"lat\":\"56.26392\",\"long\":\"9.501785\"},{\"id\":262,\"name\":\"Djibouti\",\"iso2\":\"DJ\",\"iso3\":\"DJI\",\"continent\":\"Africa\",\"lat\":\"11.825138\",\"long\":\"42.590275\"},{\"id\":212,\"name\":\"Dominica\",\"iso2\":\"DM\",\"iso3\":\"DMA\",\"continent\":\"North America\",\"lat\":\"15.414999\",\"long\":\"-61.370976\"},{\"id\":214,\"name\":\"Dominican Republic\",\"iso2\":\"DO\",\"iso3\":\"DOM\",\"continent\":\"North America\",\"lat\":\"18.735693\",\"long\":\"-70.162651\"},{\"id\":218,\"name\":\"Ecuador\",\"iso2\":\"EC\",\"iso3\":\"ECU\",\"continent\":\"South America\",\"lat\":\"-1.831239\",\"long\":\"-78.183406\"},{\"id\":818,\"name\":\"Egypt\",\"iso2\":\"EG\",\"iso3\":\"EGY\",\"continent\":\"Africa\",\"lat\":\"26.820553\",\"long\":\"30.802498\"},{\"id\":222,\"name\":\"El Salvador\",\"iso2\":\"SV\",\"iso3\":\"SLV\",\"continent\":\"North America\",\"lat\":\"13.794185\",\"long\":\"-88.89653\"},{\"id\":226,\"name\":\"Equatorial Guinea\",\"iso2\":\"GQ\",\"iso3\":\"GNQ\",\"continent\":\"Africa\",\"lat\":\"1.650801\",\"long\":\"10.267895\"},{\"id\":232,\"name\":\"Eritrea\",\"iso2\":\"ER\",\"iso3\":\"ERI\",\"continent\":\"Africa\",\"lat\":\"15.179384\",\"long\":\"39.782334\"},{\"id\":233,\"name\":\"Estonia\",\"iso2\":\"EE\",\"iso3\":\"EST\",\"continent\":\"Europe\",\"lat\":\"58.595272\",\"long\":\"25.013607\"},{\"id\":231,\"name\":\"Ethiopia\",\"iso2\":\"ET\",\"iso3\":\"ETH\",\"continent\":\"Africa\",\"lat\":\"9.145\",\"long\":\"40.489673\"},{\"id\":238,\"name\":\"Falkland Islands (Malvinas)\",\"iso2\":\"FK\",\"iso3\":\"FLK\",\"continent\":\"South America\",\"lat\":\"-51.796253\",\"long\":\"-59.523613\"},{\"id\":234,\"name\":\"Faroe Islands\",\"iso2\":\"FO\",\"iso3\":\"FRO\",\"continent\":\"Europe\",\"lat\":\"61.892635\",\"long\":\"-6.911806\"},{\"id\":242,\"name\":\"Fiji\",\"iso2\":\"FJ\",\"iso3\":\"FJI\",\"continent\":\"Oceania\",\"lat\":\"-16.578193\",\"long\":\"179.414413\"},{\"id\":246,\"name\":\"Finland\",\"iso2\":\"FI\",\"iso3\":\"FIN\",\"continent\":\"Europe\",\"lat\":\"61.92411\",\"long\":\"25.748151\"},{\"id\":250,\"name\":\"France\",\"iso2\":\"FR\",\"iso3\":\"FRA\",\"continent\":\"Europe\",\"lat\":\"46.227638\",\"long\":\"2.213749\"},{\"id\":254,\"name\":\"French Guiana\",\"iso2\":\"GF\",\"iso3\":\"GUF\",\"continent\":\"South America\",\"lat\":\"3.933889\",\"long\":\"-53.125782\"},{\"id\":258,\"name\":\"French Polynesia\",\"iso2\":\"PF\",\"iso3\":\"PYF\",\"continent\":\"Oceania\",\"lat\":\"-17.679742\",\"long\":\"-149.406843\"},{\"id\":260,\"name\":\"French Southern Territories\",\"iso2\":\"TF\",\"iso3\":\"ATF\",\"continent\":\"Antarctica\",\"lat\":\"-49.280366\",\"long\":\"69.348557\"},{\"id\":266,\"name\":\"Gabon\",\"iso2\":\"GA\",\"iso3\":\"GAB\",\"continent\":\"Africa\",\"lat\":\"-0.803689\",\"long\":\"11.609444\"},{\"id\":270,\"name\":\"Gambia\",\"iso2\":\"GM\",\"iso3\":\"GMB\",\"continent\":\"Africa\",\"lat\":\"13.443182\",\"long\":\"-15.310139\"},{\"id\":268,\"name\":\"Georgia\",\"iso2\":\"GE\",\"iso3\":\"GEO\",\"continent\":\"Europe\",\"lat\":\"42.315407\",\"long\":\"43.356892\"},{\"id\":276,\"name\":\"Germany\",\"iso2\":\"DE\",\"iso3\":\"DEU\",\"continent\":\"Europe\",\"lat\":\"51.165691\",\"long\":\"10.451526\"},{\"id\":288,\"name\":\"Ghana\",\"iso2\":\"GH\",\"iso3\":\"GHA\",\"continent\":\"Africa\",\"lat\":\"7.946527\",\"long\":\"-1.023194\"},{\"id\":292,\"name\":\"Gibraltar\",\"iso2\":\"GI\",\"iso3\":\"GIB\",\"continent\":\"Europe\",\"lat\":\"36.137741\",\"long\":\"-5.345374\"},{\"id\":300,\"name\":\"Greece\",\"iso2\":\"GR\",\"iso3\":\"GRC\",\"continent\":\"Europe\",\"lat\":\"39.074208\",\"long\":\"21.824312\"},{\"id\":304,\"name\":\"Greenland\",\"iso2\":\"GL\",\"iso3\":\"GRL\",\"continent\":\"North America\",\"lat\":\"71.706936\",\"long\":\"-42.604303\"},{\"id\":308,\"name\":\"Grenada\",\"iso2\":\"GD\",\"iso3\":\"GRD\",\"continent\":\"North America\",\"lat\":\"12.262776\",\"long\":\"-61.604171\"},{\"id\":312,\"name\":\"Guadeloupe\",\"iso2\":\"GP\",\"iso3\":\"GLP\",\"continent\":\"North America\",\"lat\":\"16.995971\",\"long\":\"-62.067641\"},{\"id\":316,\"name\":\"Guam\",\"iso2\":\"GU\",\"iso3\":\"GUM\",\"continent\":\"Oceania\",\"lat\":\"13.444304\",\"long\":\"144.793731\"},{\"id\":320,\"name\":\"Guatemala\",\"iso2\":\"GT\",\"iso3\":\"GTM\",\"continent\":\"North America\",\"lat\":\"15.783471\",\"long\":\"-90.230759\"},{\"id\":831,\"name\":\"Guernsey\",\"iso2\":\"GG\",\"iso3\":\"GGY\",\"continent\":\"Europe\",\"lat\":\"49.465691\",\"long\":\"-2.585278\"},{\"id\":324,\"name\":\"Guinea\",\"iso2\":\"GN\",\"iso3\":\"GIN\",\"continent\":\"Africa\",\"lat\":\"9.945587\",\"long\":\"-9.696645\"},{\"id\":624,\"name\":\"Guinea-Bissau\",\"iso2\":\"GW\",\"iso3\":\"GNB\",\"continent\":\"Africa\",\"lat\":\"11.803749\",\"long\":\"-15.180413\"},{\"id\":328,\"name\":\"Guyana\",\"iso2\":\"GY\",\"iso3\":\"GUY\",\"continent\":\"South America\",\"lat\":\"4.860416\",\"long\":\"-58.93018\"},{\"id\":332,\"name\":\"Haiti\",\"iso2\":\"HT\",\"iso3\":\"HTI\",\"continent\":\"North America\",\"lat\":\"18.971187\",\"long\":\"-72.285215\"},{\"id\":334,\"name\":\"Heard Island and McDonald Islands\",\"iso2\":\"HM\",\"iso3\":\"HMD\",\"continent\":\"Antarctica\",\"lat\":\"-53.08181\",\"long\":\"73.504158\"},{\"id\":336,\"name\":\"Holy See (Vatican City State)\",\"iso2\":\"VA\",\"iso3\":\"VAT\",\"continent\":\"Europe\",\"lat\":\"41.902916\",\"long\":\"12.453389\"},{\"id\":340,\"name\":\"Honduras\",\"iso2\":\"HN\",\"iso3\":\"HND\",\"continent\":\"North America\",\"lat\":\"15.199999\",\"long\":\"-86.241905\"},{\"id\":344,\"name\":\"Hong Kong\",\"iso2\":\"HK\",\"iso3\":\"HKG\",\"continent\":\"Asia\",\"lat\":\"22.396428\",\"long\":\"114.109497\"},{\"id\":348,\"name\":\"Hungary\",\"iso2\":\"HU\",\"iso3\":\"HUN\",\"continent\":\"Europe\",\"lat\":\"47.162494\",\"long\":\"19.503304\"},{\"id\":352,\"name\":\"Iceland\",\"iso2\":\"IS\",\"iso3\":\"ISL\",\"continent\":\"Europe\",\"lat\":\"64.963051\",\"long\":\"-19.020835\"},{\"id\":356,\"name\":\"India\",\"iso2\":\"IN\",\"iso3\":\"IND\",\"continent\":\"Asia\",\"lat\":\"20.593684\",\"long\":\"78.96288\"},{\"id\":360,\"name\":\"Indonesia\",\"iso2\":\"ID\",\"iso3\":\"IDN\",\"continent\":\"Asia\",\"lat\":\"-0.789275\",\"long\":\"113.921327\"},{\"id\":364,\"name\":\"Iran\",\"iso2\":\"IR\",\"iso3\":\"IRN\",\"continent\":\"Asia\",\"lat\":\"32.427908\",\"long\":\"53.688046\"},{\"id\":368,\"name\":\"Iraq\",\"iso2\":\"IQ\",\"iso3\":\"IRQ\",\"continent\":\"Asia\",\"lat\":\"33.223191\",\"long\":\"43.679291\"},{\"id\":372,\"name\":\"Ireland\",\"iso2\":\"IE\",\"iso3\":\"IRL\",\"continent\":\"Europe\",\"lat\":\"53.41291\",\"long\":\"-8.24389\"},{\"id\":833,\"name\":\"Isle of Man\",\"iso2\":\"IM\",\"iso3\":\"IMN\",\"continent\":\"Europe\",\"lat\":\"54.236107\",\"long\":\"-4.548056\"},{\"id\":376,\"name\":\"Israel\",\"iso2\":\"IL\",\"iso3\":\"ISR\",\"continent\":\"Asia\",\"lat\":\"31.046051\",\"long\":\"34.851612\"},{\"id\":380,\"name\":\"Italy\",\"iso2\":\"IT\",\"iso3\":\"ITA\",\"continent\":\"Europe\",\"lat\":\"41.87194\",\"long\":\"12.56738\"},{\"id\":388,\"name\":\"Jamaica\",\"iso2\":\"JM\",\"iso3\":\"JAM\",\"continent\":\"North America\",\"lat\":\"18.109581\",\"long\":\"-77.297508\"},{\"id\":392,\"name\":\"Japan\",\"iso2\":\"JP\",\"iso3\":\"JPN\",\"continent\":\"Asia\",\"lat\":\"36.204824\",\"long\":\"138.252924\"},{\"id\":832,\"name\":\"Channel Islands\",\"iso2\":\"JE\",\"iso3\":\"JEY\",\"continent\":\"Europe\",\"lat\":\"49.214439\",\"long\":\"-2.13125\"},{\"id\":400,\"name\":\"Jordan\",\"iso2\":\"JO\",\"iso3\":\"JOR\",\"continent\":\"Asia\",\"lat\":\"30.585164\",\"long\":\"36.238414\"},{\"id\":398,\"name\":\"Kazakhstan\",\"iso2\":\"KZ\",\"iso3\":\"KAZ\",\"continent\":\"Europe\",\"lat\":\"48.019573\",\"long\":\"66.923684\"},{\"id\":404,\"name\":\"Kenya\",\"iso2\":\"KE\",\"iso3\":\"KEN\",\"continent\":\"Africa\",\"lat\":\"-0.023559\",\"long\":\"37.906193\"},{\"id\":296,\"name\":\"Kiribati\",\"iso2\":\"KI\",\"iso3\":\"KIR\",\"continent\":\"Oceania\",\"lat\":\"-3.370417\",\"long\":\"-168.734039\"},{\"id\":895,\"name\":\"Kosovo\",\"iso2\":\"XK\",\"iso3\":\"RKS\",\"continent\":\"\",\"lat\":\"42.602636\",\"long\":\"20.902977\"},{\"id\":408,\"name\":\"N. Korea\",\"iso2\":\"KP\",\"iso3\":\"PRK\",\"continent\":\"Asia\",\"lat\":\"40.339852\",\"long\":\"127.510093\"},{\"id\":410,\"name\":\"S. Korea\",\"iso2\":\"KR\",\"iso3\":\"KOR\",\"continent\":\"Asia\",\"lat\":\"35.907757\",\"long\":\"127.766922\"},{\"id\":414,\"name\":\"Kuwait\",\"iso2\":\"KW\",\"iso3\":\"KWT\",\"continent\":\"Asia\",\"lat\":\"29.31166\",\"long\":\"47.481766\"},{\"id\":417,\"name\":\"Kyrgyzstan\",\"iso2\":\"KG\",\"iso3\":\"KGZ\",\"continent\":\"Asia\",\"lat\":\"41.20438\",\"long\":\"74.766098\"},{\"id\":418,\"name\":\"Lao People\\\"s Democratic Republic\",\"iso2\":\"LA\",\"iso3\":\"LAO\",\"continent\":\"Asia\",\"lat\":\"19.85627\",\"long\":\"102.495496\"},{\"id\":428,\"name\":\"Latvia\",\"iso2\":\"LV\",\"iso3\":\"LVA\",\"continent\":\"Europe\",\"lat\":\"56.879635\",\"long\":\"24.603189\"},{\"id\":422,\"name\":\"Lebanon\",\"iso2\":\"LB\",\"iso3\":\"LBN\",\"continent\":\"Asia\",\"lat\":\"33.854721\",\"long\":\"35.862285\"},{\"id\":426,\"name\":\"Lesotho\",\"iso2\":\"LS\",\"iso3\":\"LSO\",\"continent\":\"Africa\",\"lat\":\"-29.609988\",\"long\":\"28.233608\"},{\"id\":430,\"name\":\"Liberia\",\"iso2\":\"LR\",\"iso3\":\"LBR\",\"continent\":\"Africa\",\"lat\":\"6.428055\",\"long\":\"-9.429499\"},{\"id\":434,\"name\":\"Libyan Arab Jamahiriya\",\"iso2\":\"LY\",\"iso3\":\"LBY\",\"continent\":\"Africa\",\"lat\":\"26.3351\",\"long\":\"17.228331\"},{\"id\":438,\"name\":\"Liechtenstein\",\"iso2\":\"LI\",\"iso3\":\"LIE\",\"continent\":\"Europe\",\"lat\":\"47.166\",\"long\":\"9.555373\"},{\"id\":440,\"name\":\"Lithuania\",\"iso2\":\"LT\",\"iso3\":\"LTU\",\"continent\":\"Europe\",\"lat\":\"55.169438\",\"long\":\"23.881275\"},{\"id\":442,\"name\":\"Luxembourg\",\"iso2\":\"LU\",\"iso3\":\"LUX\",\"continent\":\"Europe\",\"lat\":\"49.815273\",\"long\":\"6.129583\"},{\"id\":446,\"name\":\"Macao\",\"iso2\":\"MO\",\"iso3\":\"MAC\",\"continent\":\"Asia\",\"lat\":\"22.198745\",\"long\":\"113.543873\"},{\"id\":807,\"name\":\"Macedonia\",\"iso2\":\"MK\",\"iso3\":\"MKD\",\"continent\":\"Europe\",\"lat\":\"41.608635\",\"long\":\"21.745275\"},{\"id\":450,\"name\":\"Madagascar\",\"iso2\":\"MG\",\"iso3\":\"MDG\",\"continent\":\"Africa\",\"lat\":\"-18.766947\",\"long\":\"46.869107\"},{\"id\":454,\"name\":\"Malawi\",\"iso2\":\"MW\",\"iso3\":\"MWI\",\"continent\":\"Africa\",\"lat\":\"-13.254308\",\"long\":\"34.301525\"},{\"id\":458,\"name\":\"Malaysia\",\"iso2\":\"MY\",\"iso3\":\"MYS\",\"continent\":\"Asia\",\"lat\":\"4.210484\",\"long\":\"101.975766\"},{\"id\":462,\"name\":\"Maldives\",\"iso2\":\"MV\",\"iso3\":\"MDV\",\"continent\":\"Asia\",\"lat\":\"3.202778\",\"long\":\"73.22068\"},{\"id\":466,\"name\":\"Mali\",\"iso2\":\"ML\",\"iso3\":\"MLI\",\"continent\":\"Africa\",\"lat\":\"17.570692\",\"long\":\"-3.996166\"},{\"id\":470,\"name\":\"Malta\",\"iso2\":\"MT\",\"iso3\":\"MLT\",\"continent\":\"Europe\",\"lat\":\"35.937496\",\"long\":\"14.375416\"},{\"id\":584,\"name\":\"Marshall Islands\",\"iso2\":\"MH\",\"iso3\":\"MHL\",\"continent\":\"Oceania\",\"lat\":\"7.131474\",\"long\":\"171.184478\"},{\"id\":474,\"name\":\"Martinique\",\"iso2\":\"MQ\",\"iso3\":\"MTQ\",\"continent\":\"North America\",\"lat\":\"14.641528\",\"long\":\"-61.024174\"},{\"id\":478,\"name\":\"Mauritania\",\"iso2\":\"MR\",\"iso3\":\"MRT\",\"continent\":\"Africa\",\"lat\":\"21.00789\",\"long\":\"-10.940835\"},{\"id\":480,\"name\":\"Mauritius\",\"iso2\":\"MU\",\"iso3\":\"MUS\",\"continent\":\"Africa\",\"lat\":\"-20.348404\",\"long\":\"57.552152\"},{\"id\":175,\"name\":\"Mayotte\",\"iso2\":\"YT\",\"iso3\":\"MYT\",\"continent\":\"Africa\",\"lat\":\"-12.8275\",\"long\":\"45.166244\"},{\"id\":484,\"name\":\"Mexico\",\"iso2\":\"MX\",\"iso3\":\"MEX\",\"continent\":\"North America\",\"lat\":\"23.634501\",\"long\":\"-102.552784\"},{\"id\":583,\"name\":\"Micronesia\",\"iso2\":\"FM\",\"iso3\":\"FSM\",\"continent\":\"Oceania\",\"lat\":\"7.425554\",\"long\":\"150.550812\"},{\"id\":498,\"name\":\"Moldova\",\"iso2\":\"MD\",\"iso3\":\"MDA\",\"continent\":\"Europe\",\"lat\":\"47.411631\",\"long\":\"28.369885\"},{\"id\":492,\"name\":\"Monaco\",\"iso2\":\"MC\",\"iso3\":\"MCO\",\"continent\":\"Europe\",\"lat\":\"43.750298\",\"long\":\"7.412841\"},{\"id\":496,\"name\":\"Mongolia\",\"iso2\":\"MN\",\"iso3\":\"MNG\",\"continent\":\"Asia\",\"lat\":\"46.862496\",\"long\":\"103.846656\"},{\"id\":499,\"name\":\"Montenegro\",\"iso2\":\"ME\",\"iso3\":\"MNE\",\"continent\":\"Europe\",\"lat\":\"42.708678\",\"long\":\"19.37439\"},{\"id\":500,\"name\":\"Montserrat\",\"iso2\":\"MS\",\"iso3\":\"MSR\",\"continent\":\"North America\",\"lat\":\"16.742498\",\"long\":\"-62.187366\"},{\"id\":504,\"name\":\"Morocco\",\"iso2\":\"MA\",\"iso3\":\"MAR\",\"continent\":\"Africa\",\"lat\":\"31.791702\",\"long\":\"-7.09262\"},{\"id\":508,\"name\":\"Mozambique\",\"iso2\":\"MZ\",\"iso3\":\"MOZ\",\"continent\":\"Africa\",\"lat\":\"-18.665695\",\"long\":\"35.529562\"},{\"id\":104,\"name\":\"Myanmar\",\"iso2\":\"MM\",\"iso3\":\"MMR\",\"continent\":\"Asia\",\"lat\":\"21.913965\",\"long\":\"95.956223\"},{\"id\":104,\"name\":\"Burma\",\"iso2\":\"BU\",\"iso3\":\"BUR\",\"continent\":\"\",\"lat\":22,\"long\":98},{\"id\":516,\"name\":\"Namibia\",\"iso2\":\"NA\",\"iso3\":\"NAM\",\"continent\":\"Africa\",\"lat\":\"-22.95764\",\"long\":\"18.49041\"},{\"id\":520,\"name\":\"Nauru\",\"iso2\":\"NR\",\"iso3\":\"NRU\",\"continent\":\"Oceania\",\"lat\":\"-0.522778\",\"long\":\"166.931503\"},{\"id\":524,\"name\":\"Nepal\",\"iso2\":\"NP\",\"iso3\":\"NPL\",\"continent\":\"Asia\",\"lat\":\"28.394857\",\"long\":\"84.124008\"},{\"id\":528,\"name\":\"Netherlands\",\"iso2\":\"NL\",\"iso3\":\"NLD\",\"continent\":\"Europe\",\"lat\":\"52.132633\",\"long\":\"5.291266\"},{\"id\":530,\"name\":\"Netherlands Antilles\",\"iso2\":\"AN\",\"iso3\":\"ANT\",\"continent\":\"North America\",\"lat\":\"12.226079\",\"long\":\"-69.060087\"},{\"id\":540,\"name\":\"New Caledonia\",\"iso2\":\"NC\",\"iso3\":\"NCL\",\"continent\":\"Oceania\",\"lat\":\"-20.904305\",\"long\":\"165.618042\"},{\"id\":554,\"name\":\"New Zealand\",\"iso2\":\"NZ\",\"iso3\":\"NZL\",\"continent\":\"Oceania\",\"lat\":\"-40.900557\",\"long\":\"174.885971\"},{\"id\":558,\"name\":\"Nicaragua\",\"iso2\":\"NI\",\"iso3\":\"NIC\",\"continent\":\"North America\",\"lat\":\"12.865416\",\"long\":\"-85.207229\"},{\"id\":562,\"name\":\"Niger\",\"iso2\":\"NE\",\"iso3\":\"NER\",\"continent\":\"Africa\",\"lat\":\"17.607789\",\"long\":\"8.081666\"},{\"id\":566,\"name\":\"Nigeria\",\"iso2\":\"NG\",\"iso3\":\"NGA\",\"continent\":\"Africa\",\"lat\":\"9.081999\",\"long\":\"8.675277\"},{\"id\":570,\"name\":\"Niue\",\"iso2\":\"NU\",\"iso3\":\"NIU\",\"continent\":\"Oceania\",\"lat\":\"-19.054445\",\"long\":\"-169.867233\"},{\"id\":574,\"name\":\"Norfolk Island\",\"iso2\":\"NF\",\"iso3\":\"NFK\",\"continent\":\"Oceania\",\"lat\":\"-29.040835\",\"long\":\"167.954712\"},{\"id\":580,\"name\":\"Northern Mariana Islands\",\"iso2\":\"MP\",\"iso3\":\"MNP\",\"continent\":\"Oceania\",\"lat\":\"17.33083\",\"long\":\"145.38469\"},{\"id\":578,\"name\":\"Norway\",\"iso2\":\"NO\",\"iso3\":\"NOR\",\"continent\":\"Europe\",\"lat\":\"60.472024\",\"long\":\"8.468946\"},{\"id\":512,\"name\":\"Oman\",\"iso2\":\"OM\",\"iso3\":\"OMN\",\"continent\":\"Asia\",\"lat\":\"21.512583\",\"long\":\"55.923255\"},{\"id\":586,\"name\":\"Pakistan\",\"iso2\":\"PK\",\"iso3\":\"PAK\",\"continent\":\"Asia\",\"lat\":\"30.375321\",\"long\":\"69.345116\"},{\"id\":585,\"name\":\"Palau\",\"iso2\":\"PW\",\"iso3\":\"PLW\",\"continent\":\"Oceania\",\"lat\":\"7.51498\",\"long\":\"134.58252\"},{\"id\":275,\"name\":\"Palestine\",\"iso2\":\"PS\",\"iso3\":\"PSE\",\"continent\":\"Asia\",\"lat\":\"31.952162\",\"long\":\"35.233154\"},{\"id\":591,\"name\":\"Panama\",\"iso2\":\"PA\",\"iso3\":\"PAN\",\"continent\":\"North America\",\"lat\":\"8.537981\",\"long\":\"-80.782127\"},{\"id\":598,\"name\":\"Papua New Guinea\",\"iso2\":\"PG\",\"iso3\":\"PNG\",\"continent\":\"Oceania\",\"lat\":\"-6.314993\",\"long\":\"143.95555\"},{\"id\":600,\"name\":\"Paraguay\",\"iso2\":\"PY\",\"iso3\":\"PRY\",\"continent\":\"South America\",\"lat\":\"-23.442503\",\"long\":\"-58.443832\"},{\"id\":604,\"name\":\"Peru\",\"iso2\":\"PE\",\"iso3\":\"PER\",\"continent\":\"South America\",\"lat\":\"-9.189967\",\"long\":\"-75.015152\"},{\"id\":608,\"name\":\"Philippines\",\"iso2\":\"PH\",\"iso3\":\"PHL\",\"continent\":\"Asia\",\"lat\":\"12.879721\",\"long\":\"121.774017\"},{\"id\":612,\"name\":\"Pitcairn\",\"iso2\":\"PN\",\"iso3\":\"PCN\",\"continent\":\"Oceania\",\"lat\":\"-24.703615\",\"long\":\"-127.439308\"},{\"id\":616,\"name\":\"Poland\",\"iso2\":\"PL\",\"iso3\":\"POL\",\"continent\":\"Europe\",\"lat\":\"51.919438\",\"long\":\"19.145136\"},{\"id\":620,\"name\":\"Portugal\",\"iso2\":\"PT\",\"iso3\":\"PRT\",\"continent\":\"Europe\",\"lat\":\"39.399872\",\"long\":\"-8.224454\"},{\"id\":630,\"name\":\"Puerto Rico\",\"iso2\":\"PR\",\"iso3\":\"PRI\",\"continent\":\"North America\",\"lat\":\"18.220833\",\"long\":\"-66.590149\"},{\"id\":634,\"name\":\"Qatar\",\"iso2\":\"QA\",\"iso3\":\"QAT\",\"continent\":\"Asia\",\"lat\":\"25.354826\",\"long\":\"51.183884\"},{\"id\":638,\"name\":\"Réunion\",\"iso2\":\"RE\",\"iso3\":\"REU\",\"continent\":\"Africa\",\"lat\":\"-21.115141\",\"long\":\"55.536384\"},{\"id\":642,\"name\":\"Romania\",\"iso2\":\"RO\",\"iso3\":\"ROU\",\"continent\":\"Europe\",\"lat\":\"45.943161\",\"long\":\"24.96676\"},{\"id\":643,\"name\":\"Russia\",\"iso2\":\"RU\",\"iso3\":\"RUS\",\"continent\":\"Europe\",\"lat\":\"61.52401\",\"long\":\"105.318756\"},{\"id\":646,\"name\":\"Rwanda\",\"iso2\":\"RW\",\"iso3\":\"RWA\",\"continent\":\"Africa\",\"lat\":\"-1.940278\",\"long\":\"29.873888\"},{\"id\":652,\"name\":\"St. Barth\",\"iso2\":\"BL\",\"iso3\":\"BLM\",\"continent\":\"North America\",\"lat\":17.89,\"long\":-62.82},{\"id\":654,\"name\":\"Saint Helena\",\"iso2\":\"SH\",\"iso3\":\"SHN\",\"continent\":\"Africa\",\"lat\":\"-24.143474\",\"long\":\"-10.030696\"},{\"id\":659,\"name\":\"Saint Kitts and Nevis\",\"iso2\":\"KN\",\"iso3\":\"KNA\",\"continent\":\"North America\",\"lat\":\"17.357822\",\"long\":\"-62.782998\"},{\"id\":662,\"name\":\"Saint Lucia\",\"iso2\":\"LC\",\"iso3\":\"LCA\",\"continent\":\"North America\",\"lat\":\"13.909444\",\"long\":\"-60.978893\"},{\"id\":666,\"name\":\"Saint Pierre Miquelon\",\"iso2\":\"PM\",\"iso3\":\"SPM\",\"continent\":\"North America\",\"lat\":\"46.941936\",\"long\":\"-56.27111\"},{\"id\":663,\"name\":\"Saint Martin\",\"iso2\":\"MF\",\"iso3\":\"MAF\",\"continent\":\"North America\",\"lat\":18.11,\"long\":-63.03},{\"id\":534,\"name\":\"Sint Maarten\",\"iso2\":\"SX\",\"iso3\":\"SXM\",\"continent\":\"North America\",\"lat\":18.02,\"long\":-63.06},{\"id\":670,\"name\":\"Saint Vincent and the Grenadines\",\"iso2\":\"VC\",\"iso3\":\"VCT\",\"continent\":\"North America\",\"lat\":\"12.984305\",\"long\":\"-61.287228\"},{\"id\":882,\"name\":\"Samoa\",\"iso2\":\"WS\",\"iso3\":\"WSM\",\"continent\":\"Oceania\",\"lat\":\"-13.759029\",\"long\":\"-172.104629\"},{\"id\":674,\"name\":\"San Marino\",\"iso2\":\"SM\",\"iso3\":\"SMR\",\"continent\":\"Europe\",\"lat\":\"43.94236\",\"long\":\"12.457777\"},{\"id\":678,\"name\":\"Sao Tome and Principe\",\"iso2\":\"ST\",\"iso3\":\"STP\",\"continent\":\"Africa\",\"lat\":\"0.18636\",\"long\":\"6.613081\"},{\"id\":682,\"name\":\"Saudi Arabia\",\"iso2\":\"SA\",\"iso3\":\"SAU\",\"continent\":\"Asia\",\"lat\":\"23.885942\",\"long\":\"45.079162\"},{\"id\":686,\"name\":\"Senegal\",\"iso2\":\"SN\",\"iso3\":\"SEN\",\"continent\":\"Africa\",\"lat\":\"14.497401\",\"long\":\"-14.452362\"},{\"id\":688,\"name\":\"Serbia\",\"iso2\":\"RS\",\"iso3\":\"SRB\",\"continent\":\"Europe\",\"lat\":\"44.016521\",\"long\":\"21.005859\"},{\"id\":690,\"name\":\"Seychelles\",\"iso2\":\"SC\",\"iso3\":\"SYC\",\"continent\":\"Africa\",\"lat\":\"-4.679574\",\"long\":\"55.491977\"},{\"id\":694,\"name\":\"Sierra Leone\",\"iso2\":\"SL\",\"iso3\":\"SLE\",\"continent\":\"Africa\",\"lat\":\"8.460555\",\"long\":\"-11.779889\"},{\"id\":702,\"name\":\"Singapore\",\"iso2\":\"SG\",\"iso3\":\"SGP\",\"continent\":\"Asia\",\"lat\":\"1.352083\",\"long\":\"103.819836\"},{\"id\":703,\"name\":\"Slovakia\",\"iso2\":\"SK\",\"iso3\":\"SVK\",\"continent\":\"Europe\",\"lat\":\"48.669026\",\"long\":\"19.699024\"},{\"id\":705,\"name\":\"Slovenia\",\"iso2\":\"SI\",\"iso3\":\"SVN\",\"continent\":\"Europe\",\"lat\":\"46.151241\",\"long\":\"14.995463\"},{\"id\":90,\"name\":\"Solomon Islands\",\"iso2\":\"SB\",\"iso3\":\"SLB\",\"continent\":\"Oceania\",\"lat\":\"-9.64571\",\"long\":\"160.156194\"},{\"id\":706,\"name\":\"Somalia\",\"iso2\":\"SO\",\"iso3\":\"SOM\",\"continent\":\"Africa\",\"lat\":\"5.152149\",\"long\":\"46.199616\"},{\"id\":710,\"name\":\"South Africa\",\"iso2\":\"ZA\",\"iso3\":\"ZAF\",\"continent\":\"Africa\",\"lat\":\"-30.559482\",\"long\":\"22.937506\"},{\"id\":239,\"name\":\"South Georgia and the South Sandwich Islands\",\"iso2\":\"GS\",\"iso3\":\"SGS\",\"continent\":\"Antarctica\",\"lat\":\"-54.429579\",\"long\":\"-36.587909\"},{\"id\":728,\"name\":\"South Sudan\",\"iso2\":\"SS\",\"iso3\":\"SSD\",\"continent\":\"Africa\",\"lat\":6.8769,\"long\":31.3069},{\"id\":724,\"name\":\"Spain\",\"iso2\":\"ES\",\"iso3\":\"ESP\",\"continent\":\"Europe\",\"lat\":\"40.463667\",\"long\":\"-3.74922\"},{\"id\":144,\"name\":\"Sri Lanka\",\"iso2\":\"LK\",\"iso3\":\"LKA\",\"continent\":\"Asia\",\"lat\":\"7.873054\",\"long\":\"80.771797\"},{\"id\":736,\"name\":\"Sudan\",\"iso2\":\"SD\",\"iso3\":\"SDN\",\"continent\":\"Africa\",\"lat\":\"12.862807\",\"long\":\"30.217636\"},{\"id\":740,\"name\":\"Suriname\",\"iso2\":\"SR\",\"iso3\":\"SUR\",\"continent\":\"South America\",\"lat\":\"3.919305\",\"long\":\"-56.027783\"},{\"id\":744,\"name\":\"Svalbard and Jan Mayen\",\"iso2\":\"SJ\",\"iso3\":\"SJM\",\"continent\":\"Europe\",\"lat\":\"77.553604\",\"long\":\"23.670272\"},{\"id\":748,\"name\":\"Swaziland\",\"iso2\":\"SZ\",\"iso3\":\"SWZ\",\"continent\":\"Africa\",\"lat\":\"-26.522503\",\"long\":\"31.465866\"},{\"id\":752,\"name\":\"Sweden\",\"iso2\":\"SE\",\"iso3\":\"SWE\",\"continent\":\"Europe\",\"lat\":\"60.128161\",\"long\":\"18.643501\"},{\"id\":756,\"name\":\"Switzerland\",\"iso2\":\"CH\",\"iso3\":\"CHE\",\"continent\":\"Europe\",\"lat\":\"46.818188\",\"long\":\"8.227512\"},{\"id\":760,\"name\":\"Syrian Arab Republic\",\"iso2\":\"SY\",\"iso3\":\"SYR\",\"continent\":\"Asia\",\"lat\":\"34.802075\",\"long\":\"38.996815\"},{\"id\":158,\"name\":\"Taiwan\",\"iso2\":\"TW\",\"iso3\":\"TWN\",\"continent\":\"Asia\",\"lat\":\"23.69781\",\"long\":\"120.960515\"},{\"id\":762,\"name\":\"Tajikistan\",\"iso2\":\"TJ\",\"iso3\":\"TJK\",\"continent\":\"Asia\",\"lat\":\"38.861034\",\"long\":\"71.276093\"},{\"id\":834,\"name\":\"Tanzania\",\"iso2\":\"TZ\",\"iso3\":\"TZA\",\"continent\":\"Africa\",\"lat\":\"-6.369028\",\"long\":\"34.888822\"},{\"id\":764,\"name\":\"Thailand\",\"iso2\":\"TH\",\"iso3\":\"THA\",\"continent\":\"Asia\",\"lat\":\"15.870032\",\"long\":\"100.992541\"},{\"id\":626,\"name\":\"Timor-Leste\",\"iso2\":\"TL\",\"iso3\":\"TLS\",\"continent\":\"Asia\",\"lat\":\"-8.874217\",\"long\":\"125.727539\"},{\"id\":768,\"name\":\"Togo\",\"iso2\":\"TG\",\"iso3\":\"TGO\",\"continent\":\"Africa\",\"lat\":\"8.619543\",\"long\":\"0.824782\"},{\"id\":772,\"name\":\"Tokelau\",\"iso2\":\"TK\",\"iso3\":\"TKL\",\"continent\":\"Oceania\",\"lat\":\"-8.967363\",\"long\":\"-171.855881\"},{\"id\":776,\"name\":\"Tonga\",\"iso2\":\"TO\",\"iso3\":\"TON\",\"continent\":\"Oceania\",\"lat\":\"-21.178986\",\"long\":\"-175.198242\"},{\"id\":780,\"name\":\"Trinidad and Tobago\",\"iso2\":\"TT\",\"iso3\":\"TTO\",\"continent\":\"North America\",\"lat\":\"10.691803\",\"long\":\"-61.222503\"},{\"id\":788,\"name\":\"Tunisia\",\"iso2\":\"TN\",\"iso3\":\"TUN\",\"continent\":\"Africa\",\"lat\":\"33.886917\",\"long\":\"9.537499\"},{\"id\":792,\"name\":\"Turkey\",\"iso2\":\"TR\",\"iso3\":\"TUR\",\"continent\":\"Europe\",\"lat\":\"38.963745\",\"long\":\"35.243322\"},{\"id\":795,\"name\":\"Turkmenistan\",\"iso2\":\"TM\",\"iso3\":\"TKM\",\"continent\":\"Asia\",\"lat\":\"38.969719\",\"long\":\"59.556278\"},{\"id\":796,\"name\":\"Turks and Caicos Islands\",\"iso2\":\"TC\",\"iso3\":\"TCA\",\"continent\":\"North America\",\"lat\":\"21.694025\",\"long\":\"-71.797928\"},{\"id\":798,\"name\":\"Tuvalu\",\"iso2\":\"TV\",\"iso3\":\"TUV\",\"continent\":\"Oceania\",\"lat\":\"-7.109535\",\"long\":\"177.64933\"},{\"id\":800,\"name\":\"Uganda\",\"iso2\":\"UG\",\"iso3\":\"UGA\",\"continent\":\"Africa\",\"lat\":\"1.373333\",\"long\":\"32.290275\"},{\"id\":804,\"name\":\"Ukraine\",\"iso2\":\"UA\",\"iso3\":\"UKR\",\"continent\":\"Europe\",\"lat\":\"48.379433\",\"long\":\"31.16558\"},{\"id\":784,\"name\":\"UAE\",\"iso2\":\"AE\",\"iso3\":\"ARE\",\"continent\":\"Asia\",\"lat\":\"23.424076\",\"long\":\"53.847818\"},{\"id\":826,\"name\":\"UK\",\"iso2\":\"GB\",\"iso3\":\"GBR\",\"continent\":\"Europe\",\"lat\":\"55.378051\",\"long\":\"-3.435973\"},{\"id\":840,\"name\":\"USA\",\"iso2\":\"US\",\"iso3\":\"USA\",\"continent\":\"North America\",\"lat\":\"37.09024\",\"long\":\"-95.712891\"},{\"id\":581,\"name\":\"United States Minor Outlying Islands\",\"iso2\":\"UM\",\"iso3\":\"UMI\",\"continent\":\"Oceania\",\"lat\":\"\",\"long\":\"\"},{\"id\":858,\"name\":\"Uruguay\",\"iso2\":\"UY\",\"iso3\":\"URY\",\"continent\":\"South America\",\"lat\":\"-32.522779\",\"long\":\"-55.765835\"},{\"id\":860,\"name\":\"Uzbekistan\",\"iso2\":\"UZ\",\"iso3\":\"UZB\",\"continent\":\"Asia\",\"lat\":\"41.377491\",\"long\":\"64.585262\"},{\"id\":548,\"name\":\"Vanuatu\",\"iso2\":\"VU\",\"iso3\":\"VUT\",\"continent\":\"Oceania\",\"lat\":\"-15.376706\",\"long\":\"166.959158\"},{\"id\":862,\"name\":\"Venezuela\",\"iso2\":\"VE\",\"iso3\":\"VEN\",\"continent\":\"South America\",\"lat\":\"6.42375\",\"long\":\"-66.58973\"},{\"id\":704,\"name\":\"Vietnam\",\"iso2\":\"VN\",\"iso3\":\"VNM\",\"continent\":\"Asia\",\"lat\":\"14.058324\",\"long\":\"108.277199\"},{\"id\":92,\"name\":\"British Virgin Islands\",\"iso2\":\"VG\",\"iso3\":\"VGB\",\"continent\":\"North America\",\"lat\":\"18.420695\",\"long\":\"-64.639968\"},{\"id\":850,\"name\":\"U.S. Virgin Islands\",\"iso2\":\"VI\",\"iso3\":\"VIR\",\"continent\":\"North America\",\"lat\":\"18.335765\",\"long\":\"-64.896335\"},{\"id\":876,\"name\":\"Wallis and Futuna\",\"iso2\":\"WF\",\"iso3\":\"WLF\",\"continent\":\"Oceania\",\"lat\":\"-13.768752\",\"long\":\"-177.156097\"},{\"id\":732,\"name\":\"Western Sahara\",\"iso2\":\"EH\",\"iso3\":\"ESH\",\"continent\":\"Africa\",\"lat\":\"24.215527\",\"long\":\"-12.885834\"},{\"id\":887,\"name\":\"Yemen\",\"iso2\":\"YE\",\"iso3\":\"YEM\",\"continent\":\"Asia\",\"lat\":\"15.552727\",\"long\":\"48.516388\"},{\"id\":894,\"name\":\"Zambia\",\"iso2\":\"ZM\",\"iso3\":\"ZMB\",\"continent\":\"Africa\",\"lat\":\"-13.133897\",\"long\":\"27.849332\"},{\"id\":716,\"name\":\"Zimbabwe\",\"iso2\":\"ZW\",\"iso3\":\"ZWE\",\"continent\":\"Africa\",\"lat\":\"-19.015438\",\"long\":\"29.154857\"}]");
+},{}],"27Tqx":[function(require,module,exports) {
+const capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+module.exports = {
+    capitalize
+}
+},{}],"1I3q9":[function(require,module,exports) {
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "Writeup", function () {
+    return Writeup;
+  });
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _jsxFileName = "/Users/rishikavikondala/Code/info474-assignment3/src/components/Writeup.js";
+  const Writeup = () => {
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 5,
+          columnNumber: 5
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h2", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 6,
+          columnNumber: 7
+        }
+      }, "Writeup"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 7,
+          columnNumber: 7
+        }
+      }, "Design Decisions Rationale"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 8,
+          columnNumber: 7
+        }
+      }, "Wanted option of color and non-color for accessibility"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 9,
+          columnNumber: 7
+        }
+      }, "Wanted to prioritize the investigation of data based on geography (i.e., where countries are physically located on the globe)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 10,
+          columnNumber: 7
+        }
+      }, "Achieved the above by examining individual continents at a time and by giving the option to filter data by latitude (i.e., proximity to equator)"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 11,
+          columnNumber: 7
+        }
+      }, "Development Process Overview"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 12,
+          columnNumber: 7
+        }
+      }, "Split up based on different means of interaction"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 13,
+          columnNumber: 7
+        }
+      }, "Spent about X hours in development"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 14,
+          columnNumber: 7
+        }
+      }, "Implementing different interactive elements took the most work"))
+    );
+  };
+  _c = Writeup;
+  var _c;
+  $RefreshReg$(_c, "Writeup");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","react":"3b2NM","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}]},["1j6wU","3Imd1","5rkFb"], "5rkFb", "parcelRequiref024")
 
 //# sourceMappingURL=index.3fafb3e2.js.map
