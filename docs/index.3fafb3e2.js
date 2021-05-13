@@ -1054,12 +1054,13 @@ try {
   var _reactDomDefault = _parcelHelpers.interopDefault(_reactDom);
   var _App = require("./App");
   var _AppDefault = _parcelHelpers.interopDefault(_App);
-  var _jsxFileName = "/Users/rishikavikondala/Code/info474-assignment3/src/index.js";
+  require('react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css');
+  var _jsxFileName = "F:\\info474\\info474-assignment3\\src\\index.js";
   _reactDomDefault.default.render(/*#__PURE__*/_reactDefault.default.createElement(_AppDefault.default, {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 5,
+      lineNumber: 6,
       columnNumber: 17
     }
   }), document.querySelector("#root"));
@@ -1069,7 +1070,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","react-dom":"2sg1U","./App":"6Pm2X","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"3b2NM":[function(require,module,exports) {
+},{"react":"3b2NM","react-dom":"2sg1U","./App":"6Pm2X","react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css":"3g3zW","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"3b2NM":[function(require,module,exports) {
 "use strict";
 if ("development" === 'production') {
   module.exports = require('./cjs/react.production.min.js');
@@ -26274,7 +26275,7 @@ try {
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _componentsVisualization = require('./components/Visualization');
   require('./components/Writeup');
-  var _jsxFileName = "/Users/rishikavikondala/Code/info474-assignment3/src/App.js";
+  var _jsxFileName = "F:\\info474\\info474-assignment3\\src\\App.js";
   // import { useFetch } from "./hooks/useFetch";
   // import { extent, filter } from 'd3-array';
   // import { scaleLinear, scaleBand } from 'd3-scale';
@@ -26325,13 +26326,15 @@ try {
   var _d3AxisForReact = require('d3-axis-for-react');
   var _hooksUseFetch = require('../hooks/useFetch');
   var _Writeup = require('./Writeup');
-  var _jsxFileName = "/Users/rishikavikondala/Code/info474-assignment3/src/components/Visualization.js", _s = $RefreshSig$();
+  var _reactBootstrapRangeSlider = require('react-bootstrap-range-slider');
+  var _reactBootstrapRangeSliderDefault = _parcelHelpers.interopDefault(_reactBootstrapRangeSlider);
+  var _jsxFileName = "F:\\info474\\info474-assignment3\\src\\components\\Visualization.js", _s = $RefreshSig$();
   const countryFinder = require("country-finder");
   const Visualization = () => {
     _s();
     const dimensions = {
-      width: 600,
-      height: 500,
+      width: 800,
+      height: 525,
       margin: 50
     };
     const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/rishikavikondala/internet-analysis/main/internet.csv");
@@ -26346,15 +26349,17 @@ try {
     // define state for our tooltip content
     const [colorScheme, setColorScheme] = _react.useState("Color");
     const [displayContinents, setDisplayContinents] = _react.useState([]);
+    const [urbanRate, setUrbanRate] = _react.useState(100);
+    const [internetRate, setInternetRate] = _react.useState(95);
     const determineColorMap = () => {
       if (colorScheme == "Color") {
         return {
-          "North America": "red",
-          "South America": "blue",
-          "Asia": "green",
-          "Africa": "orange",
-          "Australia": "yellow",
-          "Europe": "purple"
+          "North America": "midnightblue",
+          "South America": "mediumvioletred",
+          "Asia": "lightpink",
+          "Africa": "cadetblue",
+          "Australia": "khaki",
+          "Europe": "yellowgreen"
         };
       }
       return {
@@ -26400,7 +26405,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 53,
+            lineNumber: 56,
             columnNumber: 12
           }
         }, "Loading ...")
@@ -26414,6 +26419,8 @@ try {
         const radius = 4;
         const x = xScale(+point.urbanrate);
         const y = yScale(+point.internetuserate);
+        if (point.urbanrate >= urbanRate) return;
+        if (point.internetuserate >= internetRate) return;
         if (displayContinents.includes(point.continent)) {
           return (
             /*#__PURE__*/_reactDefault.default.createElement("circle", {
@@ -26434,7 +26441,7 @@ try {
               __self: undefined,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 66,
+                lineNumber: 71,
                 columnNumber: 16
               }
             })
@@ -26455,66 +26462,66 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 78,
+          lineNumber: 86,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("span", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 84,
+          lineNumber: 92,
           columnNumber: 9
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 84,
+          lineNumber: 92,
           columnNumber: 15
         }
-      }, "Country:"), " ", tooltipContent.country), /*#__PURE__*/_reactDefault.default.createElement("br", {
+      }, " Country:"), " ", tooltipContent.country), /*#__PURE__*/_reactDefault.default.createElement("br", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 85,
+          lineNumber: 93,
           columnNumber: 9
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("span", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 86,
+          lineNumber: 94,
           columnNumber: 9
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 86,
+          lineNumber: 94,
           columnNumber: 15
         }
-      }, "Urban Rate:"), " ", tooltipContent.x), /*#__PURE__*/_reactDefault.default.createElement("br", {
+      }, " Urban Rate:"), " ", tooltipContent.x), /*#__PURE__*/_reactDefault.default.createElement("br", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 87,
+          lineNumber: 95,
           columnNumber: 9
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("span", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 88,
+          lineNumber: 96,
           columnNumber: 9
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 88,
+          lineNumber: 96,
           columnNumber: 15
         }
-      }, "Internet Use Rate:"), " ", tooltipContent.y));
+      }, " Internet Use Rate:"), " ", tooltipContent.y));
       const onPointHover = circle => {
         setTooltipPos({
           x: circle.pageX + 30,
@@ -26545,6 +26552,7 @@ try {
       };
       return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "container",
           style: {
             marginLeft: "auto",
             marginRight: "auto"
@@ -26552,79 +26560,178 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 116,
+            lineNumber: 124,
             columnNumber: 7
           }
-        }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
-          style: {
-            textAlign: "center"
-          },
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "pb-4 pt-2",
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 117,
+            lineNumber: 125,
             columnNumber: 9
           }
-        }, "Internet Use Rate vs. Urban Rate"), /*#__PURE__*/_reactDefault.default.createElement("label", {
-          for: "scheme",
+        }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 119,
+            lineNumber: 126,
+            columnNumber: 11
+          }
+        }, "Assignment 3: Interactive Visualization"), /*#__PURE__*/_reactDefault.default.createElement("h4", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 127,
+            columnNumber: 11
+          }
+        }, "Catherine Oei and Rishi Kavikondola", /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 128,
+            columnNumber: 48
+          }
+        }), "13 April 2021")), /*#__PURE__*/_reactDefault.default.createElement("h2", {
+          className: "pb-4",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 132,
             columnNumber: 9
+          }
+        }, "How does urban rate affect internet use rate across the globe?"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 133,
+            columnNumber: 9
+          }
+        }, "Urbanization has historically been regarded as a mark of progress and a sign of economic prosper. Internet usage rates may be an indicator of technological access. In theory, access to technology should increase as areas become more urbanized due to improvements in infrastructure. However, we know this is not always be the case. Which parts of the world are urbanizing faster than infrastructure can support? Where in the world is the lack of access to technology most prevalent? Furthermore, which countries have the greatest disparities when it comes to urbanization and access to technology?", /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 140,
+            columnNumber: 11
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 141,
+            columnNumber: 11
+          }
+        }), "Using the \"Global Internet Usage\" ", /*#__PURE__*/_reactDefault.default.createElement("a", {
+          href: "https://www.kaggle.com/sansuthi/gapminder-internet",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 142,
+            columnNumber: 45
+          }
+        }, "dataset"), " from Kaggle, we created the following data exploration activity to investigate how urban rate affects internet use rate across the world."), /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "table",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 145,
+            columnNumber: 9
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("tbody", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 146,
+            columnNumber: 11
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("tr", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 147,
+            columnNumber: 13
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("td", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 148,
+            columnNumber: 15
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 150,
+            columnNumber: 17
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 151,
+            columnNumber: 19
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("label", {
+          htmlFor: "scheme",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 151,
+            columnNumber: 23
           }
         }, "Select color option:"), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 119,
-            columnNumber: 57
+            lineNumber: 151,
+            columnNumber: 75
           }
-        }), /*#__PURE__*/_reactDefault.default.createElement("select", {
+        })), /*#__PURE__*/_reactDefault.default.createElement("select", {
           id: "scheme",
           onChange: () => setColorScheme(scheme.value),
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 120,
-            columnNumber: 9
+            lineNumber: 152,
+            columnNumber: 19
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("option", {
           value: "Color",
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 121,
-            columnNumber: 11
+            lineNumber: 153,
+            columnNumber: 21
           }
         }, "Color"), /*#__PURE__*/_reactDefault.default.createElement("option", {
           value: "Grayscale",
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 122,
-            columnNumber: 11
+            lineNumber: 154,
+            columnNumber: 21
           }
-        }, "Grayscale")), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        }, "Grayscale")))), /*#__PURE__*/_reactDefault.default.createElement("td", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 124,
-            columnNumber: 9
-          }
-        }), /*#__PURE__*/_reactDefault.default.createElement("br", {
-          __self: undefined,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 124,
+            lineNumber: 158,
             columnNumber: 15
           }
-        }), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 125,
-            columnNumber: 9
+            lineNumber: 160,
+            columnNumber: 17
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 161,
+            columnNumber: 19
           }
         }, "Select which continents to view:"), /*#__PURE__*/_reactDefault.default.createElement("input", {
           type: "checkbox",
@@ -26634,23 +26741,23 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 126,
-            columnNumber: 9
+            lineNumber: 162,
+            columnNumber: 19
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("label", {
-          for: "northamerica",
+          htmlFor: "northamerica",
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 127,
-            columnNumber: 9
+            lineNumber: 163,
+            columnNumber: 19
           }
-        }, "North America"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        }, " North America"), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 127,
-            columnNumber: 56
+            lineNumber: 163,
+            columnNumber: 76
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("input", {
           type: "checkbox",
@@ -26660,23 +26767,23 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 128,
-            columnNumber: 9
+            lineNumber: 164,
+            columnNumber: 19
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("label", {
-          for: "southamerica",
+          htmlFor: "southamerica",
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 129,
-            columnNumber: 9
+            lineNumber: 165,
+            columnNumber: 19
           }
-        }, "South America"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        }, " South America"), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 129,
-            columnNumber: 56
+            lineNumber: 165,
+            columnNumber: 76
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("input", {
           type: "checkbox",
@@ -26686,23 +26793,23 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 130,
-            columnNumber: 9
+            lineNumber: 166,
+            columnNumber: 19
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("label", {
-          for: "asia",
+          htmlFor: "asia",
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 131,
-            columnNumber: 9
+            lineNumber: 167,
+            columnNumber: 19
           }
-        }, "Asia"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        }, " Asia"), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 131,
-            columnNumber: 39
+            lineNumber: 167,
+            columnNumber: 59
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("input", {
           type: "checkbox",
@@ -26712,23 +26819,23 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 132,
-            columnNumber: 9
+            lineNumber: 168,
+            columnNumber: 19
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("label", {
-          for: "africa",
+          htmlFor: "africa",
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 133,
-            columnNumber: 9
+            lineNumber: 169,
+            columnNumber: 19
           }
-        }, "Africa"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        }, " Africa"), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 133,
-            columnNumber: 43
+            lineNumber: 169,
+            columnNumber: 63
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("input", {
           type: "checkbox",
@@ -26738,23 +26845,23 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 134,
-            columnNumber: 9
+            lineNumber: 170,
+            columnNumber: 19
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("label", {
-          for: "australia",
+          htmlFor: "australia",
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 135,
-            columnNumber: 9
+            lineNumber: 171,
+            columnNumber: 19
           }
-        }, "Australia"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        }, " Australia"), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 135,
-            columnNumber: 49
+            lineNumber: 171,
+            columnNumber: 69
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("input", {
           type: "checkbox",
@@ -26764,25 +26871,104 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 136,
-            columnNumber: 9
+            lineNumber: 172,
+            columnNumber: 19
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("label", {
-          for: "europe",
+          htmlFor: "europe",
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 137,
-            columnNumber: 9
+            lineNumber: 173,
+            columnNumber: 19
           }
-        }, "Europe"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        }, " Europe"), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 137,
-            columnNumber: 43
+            lineNumber: 173,
+            columnNumber: 63
           }
-        }), tooltip, /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        }))), /*#__PURE__*/_reactDefault.default.createElement("td", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 176,
+            columnNumber: 15
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 178,
+            columnNumber: 17
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
+          className: "pr-5",
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 179,
+            columnNumber: 19
+          }
+        }, "Filter urban rate:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRangeSliderDefault.default, {
+          value: urbanRate,
+          min: 10,
+          max: 100,
+          onChange: changeUrbanRate => setUrbanRate(changeUrbanRate.target.value),
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 180,
+            columnNumber: 19
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("label", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 186,
+            columnNumber: 19
+          }
+        }, "[10, ", urbanRate, "]"))), /*#__PURE__*/_reactDefault.default.createElement("td", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 189,
+            columnNumber: 15
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 191,
+            columnNumber: 17
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 192,
+            columnNumber: 19
+          }
+        }, "Filter internet use rate:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRangeSliderDefault.default, {
+          value: internetRate,
+          min: 0,
+          max: 95,
+          onChange: changeInternetRate => setInternetRate(changeInternetRate.target.value),
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 193,
+            columnNumber: 19
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("label", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 199,
+            columnNumber: 19
+          }
+        }, "[0, ", internetRate, "]")))))), tooltip, /*#__PURE__*/_reactDefault.default.createElement("svg", {
           style: {
             display: "block",
             margin: "auto"
@@ -26792,25 +26978,27 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 139,
+            lineNumber: 207,
             columnNumber: 9
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("text", {
           className: "title",
           style: {
-            textAnchor: "middle"
+            textAnchor: "middle",
+            fontSize: "20px"
           },
           x: dimensions.width / 2,
           y: dimensions.margin - 20,
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 140,
+            lineNumber: 208,
             columnNumber: 11
           }
-        }, "How does having a higher urban rate in a country affect the rate of internet use?"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        }, "Internet Use vs. Urban Rate"), /*#__PURE__*/_reactDefault.default.createElement("text", {
           style: {
-            textAnchor: "middle"
+            textAnchor: "middle",
+            fontSize: "16px"
           },
           className: "x-label",
           x: dimensions.width / 2,
@@ -26818,16 +27006,20 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 143,
+            lineNumber: 211,
             columnNumber: 11
           }
         }, "Urban Rate"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+          style: {
+            textAnchor: "middle",
+            fontSize: "16px"
+          },
           className: "y-label",
           transform: `translate(${dimensions.margin - 30}, ${dimensions.height / 2})rotate(-90)`,
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 146,
+            lineNumber: 214,
             columnNumber: 11
           }
         }, "Internet Use Rate"), circles, /*#__PURE__*/_reactDefault.default.createElement("g", {
@@ -26836,7 +27028,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 152,
+            lineNumber: 218,
             columnNumber: 11
           }
         }, /*#__PURE__*/_reactDefault.default.createElement(_d3AxisForReact.Axis, {
@@ -26845,7 +27037,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 153,
+            lineNumber: 219,
             columnNumber: 13
           }
         })), /*#__PURE__*/_reactDefault.default.createElement("g", {
@@ -26854,7 +27046,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 155,
+            lineNumber: 221,
             columnNumber: 11
           }
         }, /*#__PURE__*/_reactDefault.default.createElement(_d3AxisForReact.Axis, {
@@ -26863,21 +27055,35 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 156,
+            lineNumber: 222,
             columnNumber: 13
           }
-        }))), /*#__PURE__*/_reactDefault.default.createElement(_Writeup.Writeup, {
+        }))), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 159,
+            lineNumber: 225,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 226,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement(_Writeup.Writeup, {
+          __self: undefined,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 227,
             columnNumber: 9
           }
         }))
       );
     }
   };
-  _s(Visualization, "BVB0dGjI1WRixybqdMX/GvtNv94=", false, function () {
+  _s(Visualization, "lXP+Tvu/h5anRNt9OrV7Wl02y/A=", false, function () {
     return [_hooksUseFetch.useFetch];
   });
   _c = Visualization;
@@ -26889,7 +27095,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","d3-array":"7CLUA","d3-scale":"2UZ4X","d3-axis-for-react":"3RPRP","../hooks/useFetch":"5YU3r","./Writeup":"1I3q9","country-finder":"5pVjQ","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"7CLUA":[function(require,module,exports) {
+},{"react":"3b2NM","d3-array":"7CLUA","d3-scale":"2UZ4X","d3-axis-for-react":"3RPRP","../hooks/useFetch":"5YU3r","./Writeup":"1I3q9","react-bootstrap-range-slider":"4Fvpz","country-finder":"5pVjQ","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"7CLUA":[function(require,module,exports) {
 var define;
 // https://d3js.org/d3-array/ v2.12.1 Copyright 2021 Mike Bostock
 (function (global, factory) {
@@ -31551,7 +31757,7 @@ try {
   });
   var _react = require('react');
   var _reactDefault = _parcelHelpers.interopDefault(_react);
-  var _jsxFileName = "/Users/rishikavikondala/Code/info474-assignment3/src/components/Writeup.js";
+  var _jsxFileName = "F:\\info474\\info474-assignment3\\src\\components\\Writeup.js";
   const Writeup = () => {
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -31562,69 +31768,119 @@ try {
           columnNumber: 5
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("h2", {
+        className: "pb-3",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 6,
           columnNumber: 7
         }
-      }, "Writeup"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+      }, "Write-up"), /*#__PURE__*/_reactDefault.default.createElement("h4", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 7,
           columnNumber: 7
         }
-      }, "Design Decisions Rationale"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+      }, "Design Decisions Rationale"), /*#__PURE__*/_reactDefault.default.createElement("ol", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 8,
           columnNumber: 7
         }
-      }, "Wanted option of color and non-color for accessibility"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+      }, /*#__PURE__*/_reactDefault.default.createElement("li", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 9,
-          columnNumber: 7
+          columnNumber: 9
         }
-      }, "Wanted to prioritize the investigation of data based on geography (i.e., where countries are physically located on the globe)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+      }, "Color"), /*#__PURE__*/_reactDefault.default.createElement("li", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 10,
-          columnNumber: 7
+          columnNumber: 9
         }
-      }, "Achieved the above by examining individual continents at a time and by giving the option to filter data by latitude (i.e., proximity to equator)"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+      }, "Continents"), /*#__PURE__*/_reactDefault.default.createElement("li", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 11,
+          columnNumber: 9
+        }
+      }, "Hovering for Information"), /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 12,
+          columnNumber: 9
+        }
+      }, "Urban Rate Range"), /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 13,
+          columnNumber: 9
+        }
+      }, "Internet Use Rate Range")), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 15,
+          columnNumber: 7
+        }
+      }, "In terms of ", /*#__PURE__*/_reactDefault.default.createElement("b", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 16,
+          columnNumber: 21
+        }
+      }, "visual encodings"), ", we specifically chose to provide an option for color and grayscale viewing for accessibility reasons. While visually encoding for color is generally preferable for those without visual impairments, it makes the visualization useless to those with visual impairments, such as those who are colorblind. Therefore, offering grayscale encoding as an option makes this data exploration more accessible and inclusive. Additionally, we wanted to conduct a geographical investigation of the data (i.e., where countries are physically located on the globe), so we grouped countries by their respective continents, and colored/shaded them accordingly. Doing so made it easier to observe any disparities in internet use rates within a specific geographical area. In terms of ", /*#__PURE__*/_reactDefault.default.createElement("b", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 22,
+          columnNumber: 77
+        }
+      }, "interaction techniques"), ", we chose to include a hover tooltip for each point on the scatterplot. This allowed us to present more detailed information in a clean and polished manner without overloading the user with too much information at once. We also included two range sliders--one for filtering the urban rates displayed on the plot, and the other for filtering the internet use rates displayed on the plot. These sliders would be helpful for users interested in specific urban rate/internet use rate thresholds and allow them to conduct a more efficient and thorough exploration of the dataset. Another interaction we included were checkboxes for the seven different continents. This made it very easy for the user to view relevant data points of interest, while also successfully providing a geographic exploration and comparison of internet use rates vs. urban rates around the world. An ", /*#__PURE__*/_reactDefault.default.createElement("b", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 30,
+          columnNumber: 12
+        }
+      }, "alternative"), " we did consider was filtering points for specific latitudes and longitudes using text boxes. This seemed quite simple to implement, but after taking a step back and considering the likelihood of a user needing the information that specific interaction would provide, we chose to include the filter ranges instead. Additionally, since we already included checkboxes for continents, we believed that users could acquire the same information from the checkboxes that they would with latitude/longitude."), /*#__PURE__*/_reactDefault.default.createElement("h4", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 35,
           columnNumber: 7
         }
       }, "Development Process Overview"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 12,
+          lineNumber: 36,
           columnNumber: 7
         }
-      }, "Split up based on different means of interaction"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+      }, "Overall, our visualization underwent multiple iterations. We originally began with a bar graph as our primary visualization, but soon switched to a scatterplot because it was able to more representatively capture and display the diversity of our dataset as a whole. We mainly split up tasks by different means of interactions, but also by different aspects the assignment entailed. Since we worked as a pair, the ", /*#__PURE__*/_reactDefault.default.createElement("b", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 13,
-          columnNumber: 7
+          lineNumber: 40,
+          columnNumber: 40
         }
-      }, "Spent about X hours in development"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+      }, "development process"), " was quite smooth, as there were less moving parts, and we did not encounter any merge conflicts due to our coordination of tasks and regular communication. We initially began with pre-processing the data (EDA), followed by the framing of our research question. Next, we experimented on our own and reconvened to decide on the type of plot we wanted to employ for our visualization, and discussed the types of interactions that would be most effective for exploring the plot and addressing our question. Finally, we went about our individual tasks of creating the plot and implementing the respective interactive pieces. In total, about 12 hours were spent developing the application, split evenly among our team. The most time consuming aspects of this assignment were implementing the different interactive elements. This was time consuming due to us being out of practice with React, our unfamiliarity with d3 and combining the d3 with React, as well as the debugging process."), /*#__PURE__*/_reactDefault.default.createElement("br", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 14,
+          lineNumber: 49,
           columnNumber: 7
         }
-      }, "Implementing different interactive elements took the most work"))
+      }))
     );
   };
   _c = Writeup;
@@ -31636,7 +31892,1230 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5pVjQ":[function(require,module,exports) {
+},{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"4Fvpz":[function(require,module,exports) {
+/**
+ * MIT License
+ *
+ * Copyright (c) 2020 Jason Wilson
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+'use strict';
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var React = require('react');
+var React__default = _interopDefault(React);
+var PropTypes = _interopDefault(require('prop-types'));
+var classNames = _interopDefault(require('classnames'));
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+  return arr2;
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+var DEFAULT_CLASS_PREFIX = 'range-slider';
+
+var Input = function Input(_ref) {
+  var classes = _ref.classes,
+      _onChange = _ref.onChange,
+      onMouseUpOrTouchEnd = _ref.onMouseUpOrTouchEnd,
+      _onTouchEnd = _ref.onTouchEnd,
+      _onMouseUp = _ref.onMouseUp,
+      rest = _objectWithoutProperties(_ref, ["classes", "onChange", "onMouseUpOrTouchEnd", "onTouchEnd", "onMouseUp"]);
+
+  return /*#__PURE__*/React__default.createElement("input", _extends({
+    type: "range",
+    onChange: function onChange(ev) {
+      return _onChange(ev, ev.target.valueAsNumber);
+    },
+    onMouseUp: function onMouseUp(ev) {
+      onMouseUpOrTouchEnd(ev);
+      if (_onMouseUp) _onMouseUp(ev);
+    },
+    onTouchEnd: function onTouchEnd(ev) {
+      onMouseUpOrTouchEnd(ev);
+      if (_onTouchEnd) _onTouchEnd(ev);
+    },
+    className: classes
+  }, rest));
+};
+
+Input.propTypes = {
+  classes: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onMouseUpOrTouchEnd: PropTypes.func.isRequired,
+  onTouchEnd: PropTypes.func,
+  onMouseUp: PropTypes.func
+};
+var InputMemo = /*#__PURE__*/React__default.memo(Input);
+var RangeSlider = /*#__PURE__*/React__default.forwardRef(function (_ref2, ref) {
+  var size = _ref2.size,
+      _ref2$disabled = _ref2.disabled,
+      disabled = _ref2$disabled === void 0 ? false : _ref2$disabled,
+      value = _ref2.value,
+      _ref2$onChange = _ref2.onChange,
+      onChange = _ref2$onChange === void 0 ? function () {} : _ref2$onChange,
+      _ref2$onAfterChange = _ref2.onAfterChange,
+      onAfterChange = _ref2$onAfterChange === void 0 ? function () {} : _ref2$onAfterChange,
+      _ref2$min = _ref2.min,
+      min = _ref2$min === void 0 ? 0 : _ref2$min,
+      _ref2$max = _ref2.max,
+      max = _ref2$max === void 0 ? 100 : _ref2$max,
+      step = _ref2.step,
+      _ref2$variant = _ref2.variant,
+      variant = _ref2$variant === void 0 ? 'primary' : _ref2$variant,
+      _ref2$inputProps = _ref2.inputProps,
+      inputProps = _ref2$inputProps === void 0 ? {} : _ref2$inputProps,
+      _ref2$tooltip = _ref2.tooltip,
+      tooltip = _ref2$tooltip === void 0 ? 'auto' : _ref2$tooltip,
+      _ref2$tooltipPlacemen = _ref2.tooltipPlacement,
+      tooltipPlacement = _ref2$tooltipPlacemen === void 0 ? 'bottom' : _ref2$tooltipPlacemen,
+      tooltipLabel = _ref2.tooltipLabel,
+      _ref2$tooltipStyle = _ref2.tooltipStyle,
+      tooltipStyle = _ref2$tooltipStyle === void 0 ? {} : _ref2$tooltipStyle,
+      _ref2$tooltipProps = _ref2.tooltipProps,
+      tooltipProps = _ref2$tooltipProps === void 0 ? {} : _ref2$tooltipProps,
+      bsPrefix = _ref2.bsPrefix,
+      className = _ref2.className;
+
+  var _useState = React.useState(),
+      _useState2 = _slicedToArray(_useState, 2),
+      prevValue = _useState2[0],
+      setPrevValue = _useState2[1];
+
+  var prefix = bsPrefix || DEFAULT_CLASS_PREFIX;
+  var isTooltip = tooltip === 'auto' || tooltip === 'on';
+  var classes = classNames(className, prefix, size && "".concat(prefix, "--").concat(size), disabled && 'disabled', variant && "".concat(prefix, "--").concat(variant));
+
+  var onMouseUp = inputProps.onMouseUp,
+      onTouchEnd = inputProps.onTouchEnd,
+      restInputProps = _objectWithoutProperties(inputProps, ["onMouseUp", "onTouchEnd"]);
+
+  var onMouseUpOrTouchEnd = React.useCallback(function (ev) {
+    if (prevValue !== ev.target.value) onAfterChange(ev, ev.target.valueAsNumber);
+    setPrevValue(ev.target.value);
+  }, [prevValue, onAfterChange]);
+  var inputEl = /*#__PURE__*/React__default.createElement(InputMemo, _objectSpread2({
+    disabled: disabled,
+    value: value,
+    min: min,
+    max: max,
+    ref: ref,
+    step: step,
+    classes: classes,
+    onMouseUpOrTouchEnd: onMouseUpOrTouchEnd,
+    onTouchEnd: onTouchEnd,
+    onMouseUp: onMouseUp,
+    onChange: onChange
+  }, restInputProps));
+  var wrapClasses = classNames("".concat(prefix, "__wrap"), size && "".concat(prefix, "__wrap--").concat(size));
+  var tooltipClasses = classNames("".concat(prefix, "__tooltip"), isTooltip && "".concat(prefix, "__tooltip--").concat(tooltip), tooltipPlacement && "".concat(prefix, "__tooltip--").concat(tooltipPlacement), disabled && "".concat(prefix, "__tooltip--disabled"));
+  var thumbRadius = size === 'sm' ? 8 : size === 'lg' ? 12 : 10;
+  var fract = (value - min) / (max - min);
+  var percentLeft = fract * 100;
+  var fractFromCentre = (fract - 0.5) * 2;
+  var adjustment = fractFromCentre * -thumbRadius; // Half thumb width
+
+  return /*#__PURE__*/React__default.createElement("span", {
+    className: wrapClasses
+  }, inputEl, isTooltip && /*#__PURE__*/React__default.createElement("div", _extends({
+    className: tooltipClasses,
+    style: _objectSpread2(_objectSpread2({}, tooltipStyle || {}), {}, {
+      left: "calc(".concat(percentLeft, "% + ").concat(adjustment, "px)")
+    })
+  }, tooltipProps), /*#__PURE__*/React__default.createElement("div", {
+    className: "".concat(prefix, "__tooltip__label")
+  }, tooltipLabel ? tooltipLabel(value) : value), /*#__PURE__*/React__default.createElement("div", {
+    className: "".concat(prefix, "__tooltip__arrow")
+  })));
+}); // Fix: https://github.com/jaywilz/react-bootstrap-range-slider/issues/3
+
+var Element = typeof Element === 'undefined' ? function () {} : Element;
+RangeSlider.propTypes = {
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  onChange: PropTypes.func,
+  onAfterChange: PropTypes.func,
+  min: PropTypes.number,
+  max: PropTypes.number,
+  step: PropTypes.number,
+  disabled: PropTypes.bool,
+  size: PropTypes.oneOf(['sm', 'lg']),
+  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'dark', 'light']),
+  inputProps: PropTypes.object,
+  tooltip: PropTypes.oneOf(['auto', 'on', 'off']),
+  tooltipPlacement: PropTypes.oneOf(['top', 'bottom']),
+  tooltipLabel: PropTypes.func,
+  tooltipStyle: PropTypes.object,
+  tooltipProps: PropTypes.object,
+  className: PropTypes.string,
+  ref: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({
+    current: PropTypes.instanceOf(Element)
+  })]),
+  bsPrefix: PropTypes.string
+};
+
+/**
+ * MIT License
+ *
+ * Copyright (c) 2020 Jason Wilson
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+module.exports = RangeSlider;
+
+},{"react":"3b2NM","prop-types":"4dfy5","classnames":"5aJRc"}],"4dfy5":[function(require,module,exports) {
+/**
+* Copyright (c) 2013-present, Facebook, Inc.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+if ("development" !== 'production') {
+  var ReactIs = require('react-is');
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = require('./factoryWithTypeCheckers')(ReactIs.isElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = require('./factoryWithThrowingShims')();
+}
+
+},{"react-is":"68QIU","./factoryWithTypeCheckers":"1PVBO"}],"68QIU":[function(require,module,exports) {
+"use strict";
+if ("development" === 'production') {
+  module.exports = require('./cjs/react-is.production.min.js');
+} else {
+  module.exports = require('./cjs/react-is.development.js');
+}
+
+},{"./cjs/react-is.development.js":"2onCQ"}],"2onCQ":[function(require,module,exports) {
+/** @license React v16.13.1
+* react-is.development.js
+*
+* Copyright (c) Facebook, Inc. and its affiliates.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+"use strict";
+if ("development" !== "production") {
+  (function () {
+    "use strict";
+    // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+    // nor polyfill, then a plain number is used for performance.
+    var hasSymbol = typeof Symbol === 'function' && Symbol.for;
+    var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
+    var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
+    var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
+    var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
+    var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
+    var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
+    var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace;
+    // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+    // (unstable) APIs that have been removed. Can we remove the symbols?
+    var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
+    var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
+    var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
+    var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
+    var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
+    var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+    var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+    var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
+    var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
+    var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+    var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
+    function isValidElementType(type) {
+      return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+      type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+    }
+    function typeOf(object) {
+      if (typeof object === 'object' && object !== null) {
+        var $$typeof = object.$$typeof;
+        switch ($$typeof) {
+          case REACT_ELEMENT_TYPE:
+            var type = object.type;
+            switch (type) {
+              case REACT_ASYNC_MODE_TYPE:
+              case REACT_CONCURRENT_MODE_TYPE:
+              case REACT_FRAGMENT_TYPE:
+              case REACT_PROFILER_TYPE:
+              case REACT_STRICT_MODE_TYPE:
+              case REACT_SUSPENSE_TYPE:
+                return type;
+              default:
+                var $$typeofType = type && type.$$typeof;
+                switch ($$typeofType) {
+                  case REACT_CONTEXT_TYPE:
+                  case REACT_FORWARD_REF_TYPE:
+                  case REACT_LAZY_TYPE:
+                  case REACT_MEMO_TYPE:
+                  case REACT_PROVIDER_TYPE:
+                    return $$typeofType;
+                  default:
+                    return $$typeof;
+                }
+            }
+          case REACT_PORTAL_TYPE:
+            return $$typeof;
+        }
+      }
+      return undefined;
+    }
+    // AsyncMode is deprecated along with isAsyncMode
+    var AsyncMode = REACT_ASYNC_MODE_TYPE;
+    var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+    var ContextConsumer = REACT_CONTEXT_TYPE;
+    var ContextProvider = REACT_PROVIDER_TYPE;
+    var Element = REACT_ELEMENT_TYPE;
+    var ForwardRef = REACT_FORWARD_REF_TYPE;
+    var Fragment = REACT_FRAGMENT_TYPE;
+    var Lazy = REACT_LAZY_TYPE;
+    var Memo = REACT_MEMO_TYPE;
+    var Portal = REACT_PORTAL_TYPE;
+    var Profiler = REACT_PROFILER_TYPE;
+    var StrictMode = REACT_STRICT_MODE_TYPE;
+    var Suspense = REACT_SUSPENSE_TYPE;
+    var hasWarnedAboutDeprecatedIsAsyncMode = false;
+    // AsyncMode should be deprecated
+    function isAsyncMode(object) {
+      {
+        if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+          hasWarnedAboutDeprecatedIsAsyncMode = true;
+          // Using console['warn'] to evade Babel and ESLint
+          console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
+        }
+      }
+      return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+    }
+    function isConcurrentMode(object) {
+      return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+    }
+    function isContextConsumer(object) {
+      return typeOf(object) === REACT_CONTEXT_TYPE;
+    }
+    function isContextProvider(object) {
+      return typeOf(object) === REACT_PROVIDER_TYPE;
+    }
+    function isElement(object) {
+      return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+    }
+    function isForwardRef(object) {
+      return typeOf(object) === REACT_FORWARD_REF_TYPE;
+    }
+    function isFragment(object) {
+      return typeOf(object) === REACT_FRAGMENT_TYPE;
+    }
+    function isLazy(object) {
+      return typeOf(object) === REACT_LAZY_TYPE;
+    }
+    function isMemo(object) {
+      return typeOf(object) === REACT_MEMO_TYPE;
+    }
+    function isPortal(object) {
+      return typeOf(object) === REACT_PORTAL_TYPE;
+    }
+    function isProfiler(object) {
+      return typeOf(object) === REACT_PROFILER_TYPE;
+    }
+    function isStrictMode(object) {
+      return typeOf(object) === REACT_STRICT_MODE_TYPE;
+    }
+    function isSuspense(object) {
+      return typeOf(object) === REACT_SUSPENSE_TYPE;
+    }
+    exports.AsyncMode = AsyncMode;
+    exports.ConcurrentMode = ConcurrentMode;
+    exports.ContextConsumer = ContextConsumer;
+    exports.ContextProvider = ContextProvider;
+    exports.Element = Element;
+    exports.ForwardRef = ForwardRef;
+    exports.Fragment = Fragment;
+    exports.Lazy = Lazy;
+    exports.Memo = Memo;
+    exports.Portal = Portal;
+    exports.Profiler = Profiler;
+    exports.StrictMode = StrictMode;
+    exports.Suspense = Suspense;
+    exports.isAsyncMode = isAsyncMode;
+    exports.isConcurrentMode = isConcurrentMode;
+    exports.isContextConsumer = isContextConsumer;
+    exports.isContextProvider = isContextProvider;
+    exports.isElement = isElement;
+    exports.isForwardRef = isForwardRef;
+    exports.isFragment = isFragment;
+    exports.isLazy = isLazy;
+    exports.isMemo = isMemo;
+    exports.isPortal = isPortal;
+    exports.isProfiler = isProfiler;
+    exports.isStrictMode = isStrictMode;
+    exports.isSuspense = isSuspense;
+    exports.isValidElementType = isValidElementType;
+    exports.typeOf = typeOf;
+  })();
+}
+
+},{}],"1PVBO":[function(require,module,exports) {
+/**
+* Copyright (c) 2013-present, Facebook, Inc.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+"use strict";
+var ReactIs = require('react-is');
+var assign = require('object-assign');
+var ReactPropTypesSecret = require('./lib/ReactPropTypesSecret');
+var checkPropTypes = require('./checkPropTypes');
+var has = Function.call.bind(Object.prototype.hasOwnProperty);
+var printWarning = function () {};
+if ("development" !== 'production') {
+  printWarning = function (text) {
+    var message = 'Warning: ' + text;
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+}
+function emptyFunctionThatReturnsNull() {
+  return null;
+}
+module.exports = function (isValidElement, throwOnDirectAccess) {
+  /*global Symbol*/
+  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+  var FAUX_ITERATOR_SYMBOL = '@@iterator';
+  // Before Symbol spec.
+  /**
+  * Returns the iterator method function contained on the iterable object.
+  *
+  * Be sure to invoke the function with the iterable as context:
+  *
+  *     var iteratorFn = getIteratorFn(myIterable);
+  *     if (iteratorFn) {
+  *       var iterator = iteratorFn.call(myIterable);
+  *       ...
+  *     }
+  *
+  * @param {?object} maybeIterable
+  * @return {?function}
+  */
+  function getIteratorFn(maybeIterable) {
+    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+    if (typeof iteratorFn === 'function') {
+      return iteratorFn;
+    }
+  }
+  /**
+  * Collection of methods that allow declaration and validation of props that are
+  * supplied to React components. Example usage:
+  *
+  *   var Props = require('ReactPropTypes');
+  *   var MyArticle = React.createClass({
+  *     propTypes: {
+  *       // An optional string prop named "description".
+  *       description: Props.string,
+  *
+  *       // A required enum prop named "category".
+  *       category: Props.oneOf(['News','Photos']).isRequired,
+  *
+  *       // A prop named "dialog" that requires an instance of Dialog.
+  *       dialog: Props.instanceOf(Dialog).isRequired
+  *     },
+  *     render: function() { ... }
+  *   });
+  *
+  * A more formal specification of how these methods are used:
+  *
+  *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
+  *   decl := ReactPropTypes.{type}(.isRequired)?
+  *
+  * Each and every declaration produces a function with the same signature. This
+  * allows the creation of custom validation functions. For example:
+  *
+  *  var MyLink = React.createClass({
+  *    propTypes: {
+  *      // An optional string or URI prop named "href".
+  *      href: function(props, propName, componentName) {
+  *        var propValue = props[propName];
+  *        if (propValue != null && typeof propValue !== 'string' &&
+  *            !(propValue instanceof URI)) {
+  *          return new Error(
+  *            'Expected a string or an URI for ' + propName + ' in ' +
+  *            componentName
+  *          );
+  *        }
+  *      }
+  *    },
+  *    render: function() {...}
+  *  });
+  *
+  * @internal
+  */
+  var ANONYMOUS = '<<anonymous>>';
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  var ReactPropTypes = {
+    array: createPrimitiveTypeChecker('array'),
+    bool: createPrimitiveTypeChecker('boolean'),
+    func: createPrimitiveTypeChecker('function'),
+    number: createPrimitiveTypeChecker('number'),
+    object: createPrimitiveTypeChecker('object'),
+    string: createPrimitiveTypeChecker('string'),
+    symbol: createPrimitiveTypeChecker('symbol'),
+    any: createAnyTypeChecker(),
+    arrayOf: createArrayOfTypeChecker,
+    element: createElementTypeChecker(),
+    elementType: createElementTypeTypeChecker(),
+    instanceOf: createInstanceTypeChecker,
+    node: createNodeChecker(),
+    objectOf: createObjectOfTypeChecker,
+    oneOf: createEnumTypeChecker,
+    oneOfType: createUnionTypeChecker,
+    shape: createShapeTypeChecker,
+    exact: createStrictShapeTypeChecker
+  };
+  /**
+  * inlined Object.is polyfill to avoid requiring consumers ship their own
+  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+  */
+  /*eslint-disable no-self-compare*/
+  function is(x, y) {
+    // SameValue algorithm
+    if (x === y) {
+      // Steps 1-5, 7-10
+      // Steps 6.b-6.e: +0 != -0
+      return x !== 0 || 1 / x === 1 / y;
+    } else {
+      // Step 6.a: NaN == NaN
+      return x !== x && y !== y;
+    }
+  }
+  /*eslint-enable no-self-compare*/
+  /**
+  * We use an Error-like object for backward compatibility as people may call
+  * PropTypes directly and inspect their output. However, we don't use real
+  * Errors anymore. We don't inspect their stack anyway, and creating them
+  * is prohibitively expensive if they are created too often, such as what
+  * happens in oneOfType() for any type before the one that matched.
+  */
+  function PropTypeError(message) {
+    this.message = message;
+    this.stack = '';
+  }
+  // Make `instanceof Error` still work for returned errors.
+  PropTypeError.prototype = Error.prototype;
+  function createChainableTypeChecker(validate) {
+    if ("development" !== 'production') {
+      var manualPropTypeCallCache = {};
+      var manualPropTypeWarningCount = 0;
+    }
+    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+      componentName = componentName || ANONYMOUS;
+      propFullName = propFullName || propName;
+      if (secret !== ReactPropTypesSecret) {
+        if (throwOnDirectAccess) {
+          // New behavior only for users of `prop-types` package
+          var err = new Error('Calling PropTypes validators directly is not supported by the `prop-types` package. ' + 'Use `PropTypes.checkPropTypes()` to call them. ' + 'Read more at http://fb.me/use-check-prop-types');
+          err.name = 'Invariant Violation';
+          throw err;
+        } else if ("development" !== 'production' && typeof console !== 'undefined') {
+          // Old behavior for people using React.PropTypes
+          var cacheKey = componentName + ':' + propName;
+          if (!manualPropTypeCallCache[cacheKey] && // Avoid spamming the console because they are often not actionable except for lib authors
+          manualPropTypeWarningCount < 3) {
+            printWarning('You are manually calling a React.PropTypes validation ' + 'function for the `' + propFullName + '` prop on `' + componentName + '`. This is deprecated ' + 'and will throw in the standalone `prop-types` package. ' + 'You may be seeing this warning due to a third-party PropTypes ' + 'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.');
+            manualPropTypeCallCache[cacheKey] = true;
+            manualPropTypeWarningCount++;
+          }
+        }
+      }
+      if (props[propName] == null) {
+        if (isRequired) {
+          if (props[propName] === null) {
+            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+          }
+          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
+        }
+        return null;
+      } else {
+        return validate(props, propName, componentName, location, propFullName);
+      }
+    }
+    var chainedCheckType = checkType.bind(null, false);
+    chainedCheckType.isRequired = checkType.bind(null, true);
+    return chainedCheckType;
+  }
+  function createPrimitiveTypeChecker(expectedType) {
+    function validate(props, propName, componentName, location, propFullName, secret) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== expectedType) {
+        // `propValue` being instance of, say, date/regexp, pass the 'object'
+        // check, but we can offer a more precise error message here rather than
+        // 'of type `object`'.
+        var preciseType = getPreciseType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createAnyTypeChecker() {
+    return createChainableTypeChecker(emptyFunctionThatReturnsNull);
+  }
+  function createArrayOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
+      }
+      var propValue = props[propName];
+      if (!Array.isArray(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
+      }
+      for (var i = 0; i < propValue.length; i++) {
+        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret);
+        if (error instanceof Error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createElementTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!isValidElement(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createElementTypeTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!ReactIs.isValidElementType(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement type.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createInstanceTypeChecker(expectedClass) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!(props[propName] instanceof expectedClass)) {
+        var expectedClassName = expectedClass.name || ANONYMOUS;
+        var actualClassName = getClassName(props[propName]);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createEnumTypeChecker(expectedValues) {
+    if (!Array.isArray(expectedValues)) {
+      if ("development" !== 'production') {
+        if (arguments.length > 1) {
+          printWarning('Invalid arguments supplied to oneOf, expected an array, got ' + arguments.length + ' arguments. ' + 'A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).');
+        } else {
+          printWarning('Invalid argument supplied to oneOf, expected an array.');
+        }
+      }
+      return emptyFunctionThatReturnsNull;
+    }
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      for (var i = 0; i < expectedValues.length; i++) {
+        if (is(propValue, expectedValues[i])) {
+          return null;
+        }
+      }
+      var valuesString = JSON.stringify(expectedValues, function replacer(key, value) {
+        var type = getPreciseType(value);
+        if (type === 'symbol') {
+          return String(value);
+        }
+        return value;
+      });
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + String(propValue) + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createObjectOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
+      }
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+      }
+      for (var key in propValue) {
+        if (has(propValue, key)) {
+          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+          if (error instanceof Error) {
+            return error;
+          }
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createUnionTypeChecker(arrayOfTypeCheckers) {
+    if (!Array.isArray(arrayOfTypeCheckers)) {
+      "development" !== 'production' ? printWarning('Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
+      return emptyFunctionThatReturnsNull;
+    }
+    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+      var checker = arrayOfTypeCheckers[i];
+      if (typeof checker !== 'function') {
+        printWarning('Invalid argument supplied to oneOfType. Expected an array of check functions, but ' + 'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.');
+        return emptyFunctionThatReturnsNull;
+      }
+    }
+    function validate(props, propName, componentName, location, propFullName) {
+      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+        var checker = arrayOfTypeCheckers[i];
+        if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret) == null) {
+          return null;
+        }
+      }
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createNodeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!isNode(props[propName])) {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      for (var key in shapeTypes) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          continue;
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createStrictShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      // We need to check all keys in case some are required but missing from
+      // props.
+      var allKeys = assign({}, props[propName], shapeTypes);
+      for (var key in allKeys) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' + '\nBad object: ' + JSON.stringify(props[propName], null, '  ') + '\nValid keys: ' + JSON.stringify(Object.keys(shapeTypes), null, '  '));
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function isNode(propValue) {
+    switch (typeof propValue) {
+      case 'number':
+      case 'string':
+      case 'undefined':
+        return true;
+      case 'boolean':
+        return !propValue;
+      case 'object':
+        if (Array.isArray(propValue)) {
+          return propValue.every(isNode);
+        }
+        if (propValue === null || isValidElement(propValue)) {
+          return true;
+        }
+        var iteratorFn = getIteratorFn(propValue);
+        if (iteratorFn) {
+          var iterator = iteratorFn.call(propValue);
+          var step;
+          if (iteratorFn !== propValue.entries) {
+            while (!(step = iterator.next()).done) {
+              if (!isNode(step.value)) {
+                return false;
+              }
+            }
+          } else {
+            // Iterator will provide entry [k,v] tuples rather than values.
+            while (!(step = iterator.next()).done) {
+              var entry = step.value;
+              if (entry) {
+                if (!isNode(entry[1])) {
+                  return false;
+                }
+              }
+            }
+          }
+        } else {
+          return false;
+        }
+        return true;
+      default:
+        return false;
+    }
+  }
+  function isSymbol(propType, propValue) {
+    // Native Symbol.
+    if (propType === 'symbol') {
+      return true;
+    }
+    // falsy value can't be a Symbol
+    if (!propValue) {
+      return false;
+    }
+    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    if (propValue['@@toStringTag'] === 'Symbol') {
+      return true;
+    }
+    // Fallback for non-spec compliant Symbols which are polyfilled.
+    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
+      return true;
+    }
+    return false;
+  }
+  // Equivalent of `typeof` but with special handling for array and regexp.
+  function getPropType(propValue) {
+    var propType = typeof propValue;
+    if (Array.isArray(propValue)) {
+      return 'array';
+    }
+    if (propValue instanceof RegExp) {
+      // Old webkits (at least until Android 4.0) return 'function' rather than
+      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      // passes PropTypes.object.
+      return 'object';
+    }
+    if (isSymbol(propType, propValue)) {
+      return 'symbol';
+    }
+    return propType;
+  }
+  // This handles more types than `getPropType`. Only used for error messages.
+  // See `createPrimitiveTypeChecker`.
+  function getPreciseType(propValue) {
+    if (typeof propValue === 'undefined' || propValue === null) {
+      return '' + propValue;
+    }
+    var propType = getPropType(propValue);
+    if (propType === 'object') {
+      if (propValue instanceof Date) {
+        return 'date';
+      } else if (propValue instanceof RegExp) {
+        return 'regexp';
+      }
+    }
+    return propType;
+  }
+  // Returns a string that is postfixed to a warning about an invalid type.
+  // For example, "undefined" or "of type array"
+  function getPostfixForTypeWarning(value) {
+    var type = getPreciseType(value);
+    switch (type) {
+      case 'array':
+      case 'object':
+        return 'an ' + type;
+      case 'boolean':
+      case 'date':
+      case 'regexp':
+        return 'a ' + type;
+      default:
+        return type;
+    }
+  }
+  // Returns class name of the object, if any.
+  function getClassName(propValue) {
+    if (!propValue.constructor || !propValue.constructor.name) {
+      return ANONYMOUS;
+    }
+    return propValue.constructor.name;
+  }
+  ReactPropTypes.checkPropTypes = checkPropTypes;
+  ReactPropTypes.resetWarningCache = checkPropTypes.resetWarningCache;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+  return ReactPropTypes;
+};
+
+},{"react-is":"68QIU","object-assign":"3eM6x","./lib/ReactPropTypesSecret":"3OVnw","./checkPropTypes":"R8SC7"}],"3OVnw":[function(require,module,exports) {
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+'use strict';
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+module.exports = ReactPropTypesSecret;
+
+},{}],"R8SC7":[function(require,module,exports) {
+/**
+* Copyright (c) 2013-present, Facebook, Inc.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+"use strict";
+var printWarning = function () {};
+if ("development" !== 'production') {
+  var ReactPropTypesSecret = require('./lib/ReactPropTypesSecret');
+  var loggedTypeFailures = {};
+  var has = Function.call.bind(Object.prototype.hasOwnProperty);
+  printWarning = function (text) {
+    var message = 'Warning: ' + text;
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+}
+/**
+* Assert that the values match with the type specs.
+* Error messages are memorized and will only be shown once.
+*
+* @param {object} typeSpecs Map of name to a ReactPropType
+* @param {object} values Runtime values that need to be type-checked
+* @param {string} location e.g. "prop", "context", "child context"
+* @param {string} componentName Name of the component for error messages.
+* @param {?Function} getStack Returns the component stack.
+* @private
+*/
+function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+  if ("development" !== 'production') {
+    for (var typeSpecName in typeSpecs) {
+      if (has(typeSpecs, typeSpecName)) {
+        var error;
+        // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+        try {
+          // This is intentionally an invariant that gets caught. It's the same
+          // behavior as without this statement except with a better message.
+          if (typeof typeSpecs[typeSpecName] !== 'function') {
+            var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.');
+            err.name = 'Invariant Violation';
+            throw err;
+          }
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
+        } catch (ex) {
+          error = ex;
+        }
+        if (error && !(error instanceof Error)) {
+          printWarning((componentName || 'React class') + ': type specification of ' + location + ' `' + typeSpecName + '` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a ' + typeof error + '. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).');
+        }
+        if (error instanceof Error && !((error.message in loggedTypeFailures))) {
+          // Only monitor this failure once because there tends to be a lot of the
+          // same error.
+          loggedTypeFailures[error.message] = true;
+          var stack = getStack ? getStack() : '';
+          printWarning('Failed ' + location + ' type: ' + error.message + (stack != null ? stack : ''));
+        }
+      }
+    }
+  }
+}
+/**
+* Resets warning cache when testing.
+*
+* @private
+*/
+checkPropTypes.resetWarningCache = function () {
+  if ("development" !== 'production') {
+    loggedTypeFailures = {};
+  }
+};
+module.exports = checkPropTypes;
+
+},{"./lib/ReactPropTypesSecret":"3OVnw"}],"5aJRc":[function(require,module,exports) {
+var define;
+/*!
+Copyright (c) 2018 Jed Watson.
+Licensed under the MIT License (MIT), see
+http://jedwatson.github.io/classnames
+*/
+/*global define*/
+(function () {
+  "use strict";
+  var hasOwn = ({}).hasOwnProperty;
+  function classNames() {
+    var classes = [];
+    for (var i = 0; i < arguments.length; i++) {
+      var arg = arguments[i];
+      if (!arg) continue;
+      var argType = typeof arg;
+      if (argType === 'string' || argType === 'number') {
+        classes.push(arg);
+      } else if (Array.isArray(arg)) {
+        if (arg.length) {
+          var inner = classNames.apply(null, arg);
+          if (inner) {
+            classes.push(inner);
+          }
+        }
+      } else if (argType === 'object') {
+        if (arg.toString === Object.prototype.toString) {
+          for (var key in arg) {
+            if (hasOwn.call(arg, key) && arg[key]) {
+              classes.push(key);
+            }
+          }
+        } else {
+          classes.push(arg.toString());
+        }
+      }
+    }
+    return classes.join(' ');
+  }
+  if (typeof module !== 'undefined' && module.exports) {
+    classNames.default = classNames;
+    module.exports = classNames;
+  } else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+    // register as 'classnames', consistent with npm package name
+    define('classnames', [], function () {
+      return classNames;
+    });
+  } else {
+    window.classNames = classNames;
+  }
+})();
+
+},{}],"5pVjQ":[function(require,module,exports) {
 const countries = require('./src/data/countries.json')
 const utils = require('./src/util')
 
@@ -31719,6 +33198,6 @@ const capitalize = (s) => {
 module.exports = {
     capitalize
 }
-},{}]},["1j6wU","3Imd1","5rkFb"], "5rkFb", "parcelRequiref024")
+},{}],"3g3zW":[function() {},{}]},["1j6wU","3Imd1","5rkFb"], "5rkFb", "parcelRequiref024")
 
 //# sourceMappingURL=index.3fafb3e2.js.map

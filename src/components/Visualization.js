@@ -3,23 +3,26 @@ import { extent } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { Axis, Orient } from 'd3-axis-for-react';
 import { useFetch } from '../hooks/useFetch';
-import { Writeup } from './Writeup'
+import { Writeup } from './Writeup';
+import RangeSlider from 'react-bootstrap-range-slider';
 const countryFinder = require("country-finder"); // for getting latitude given country name
 
 export const Visualization = () => {
-  const dimensions = { width: 600, height: 500, margin: 50 }
+  const dimensions = { width: 800, height: 525, margin: 50 }
   const [data, loading] = useFetch("https://raw.githubusercontent.com/rishikavikondala/internet-analysis/main/internet.csv");
   const [showTooltip, setShowTooltip] = useState(false); // define state for our tooltip display status
   const [tooltipPos, setTooltipPos] = useState({x: 0, y: 0}); // define state for tooltip position
   const [tooltipContent, setTooltipContent] = useState(""); // define state for our tooltip content
   const [colorScheme, setColorScheme] = useState("Color");
-  const [displayContinents, setDisplayContinents] = useState([])
+  const [displayContinents, setDisplayContinents] = useState([]);
+  const [urbanRate, setUrbanRate] = useState(100);
+  const [internetRate, setInternetRate] = useState(95);
 
   const determineColorMap = () => {
     if(colorScheme == "Color") {
       return {
-        "North America": "red", "South America": "blue", "Asia": "green",
-        "Africa": "orange", "Australia": "yellow", "Europe": "purple"
+        "North America": "midnightblue", "South America": "mediumvioletred", "Asia": "lightpink",
+        "Africa": "cadetblue", "Australia": "khaki", "Europe": "yellowgreen"
       }
     }
     return {
@@ -62,14 +65,19 @@ export const Visualization = () => {
       const radius = 4;
       const x = xScale(+point.urbanrate);
       const y = yScale(+point.internetuserate);
+      if (point.urbanrate >= urbanRate) return
+      if(point.internetuserate >= internetRate) return
       if(displayContinents.includes(point.continent)) {
         return <circle
           style={{fill: determineColorMap()[point.continent]}}
           onMouseEnter={(event) => onPointHover(event)}
           onMouseLeave={() => onPointLeave()} 
           cx={x} cy={y} r={radius} // determine circle center's position
-          urbanrate={point.urbanrate} internetuserate={point.internetuserate} 
-          country={point.country} continent={point.continent} latitude={parseFloat(getLatitude(point.country))}
+          urbanrate={point.urbanrate}
+          internetuserate={point.internetuserate} 
+          country={point.country}
+          continent={point.continent}
+          latitude={parseFloat(getLatitude(point.country))}
         />
       }
     });
@@ -81,11 +89,11 @@ export const Visualization = () => {
         border: '1px solid black', backgroundColor: "white",
         left: `${tooltipPos.x}px`, top: `${tooltipPos.y}px`
       }}>
-        <span><strong>Country:</strong> {tooltipContent.country}</span>
+        <span><strong>&nbsp;Country:</strong> {tooltipContent.country}</span>
         <br />
-        <span><strong>Urban Rate:</strong> {tooltipContent.x}</span>
+        <span><strong>&nbsp;Urban Rate:</strong> {tooltipContent.x}</span>
         <br />
-        <span><strong>Internet Use Rate:</strong> {tooltipContent.y}</span>
+        <span><strong>&nbsp;Internet Use Rate:</strong> {tooltipContent.y}</span>
       </div>
     )
 
@@ -113,42 +121,100 @@ export const Visualization = () => {
     }
 
     return (
-      <div style={{marginLeft: "auto", marginRight: "auto"}}> 
-        <h1 style={{textAlign: "center"}}>Internet Use Rate vs. Urban Rate</h1>
-        {/* TODO: center this selector */}
-        <label for="scheme">Select color option:</label><br />
-        <select id="scheme" onChange={() => setColorScheme(scheme.value)}> 
-          <option value="Color">Color</option>
-          <option value="Grayscale">Grayscale</option>
-        </select>
-        <br /><br />
-        <h3>Select which continents to view:</h3>
-        <input type="checkbox" id="northamerica" name="northamerica" onChange={() => modifyContinentDisplay("North America")} />
-        <label for="northamerica">North America</label><br />
-        <input type="checkbox" id="southamerica" name="southamerica" onChange={() => modifyContinentDisplay("South America")} />
-        <label for="southamerica">South America</label><br />
-        <input type="checkbox" id="asia" name="asia" onChange={() => modifyContinentDisplay("Asia")}/>
-        <label for="asia">Asia</label><br />
-        <input type="checkbox" id="africa" name="africa" onChange={() => modifyContinentDisplay("Africa")} />
-        <label for="africa">Africa</label><br />
-        <input type="checkbox" id="australia" name="australia" onChange={() => modifyContinentDisplay("Australia")} />
-        <label for="australia">Australia</label><br />
-        <input type="checkbox" id="europe" name="europe" onChange={() => modifyContinentDisplay("Europe")} />
-        <label for="europe">Europe</label><br />
+      <div className="container" style={{marginLeft: "auto", marginRight: "auto"}}>
+        <div className="pb-4 pt-2">
+          <h1>Assignment 3: Interactive Visualization</h1>
+          <h4>
+            Catherine Oei and Rishi Kavikondola<br></br>
+            13 April 2021
+          </h4>
+        </div>
+        <h2 className="pb-4">How does urban rate affect internet use rate across the globe?</h2>
+        <p>
+          Urbanization has historically been regarded as a mark of progress and a sign of economic prosper. Internet usage rates may be
+          an indicator of technological access.
+          In theory, access to technology should increase as areas become more urbanized due to improvements in infrastructure. 
+          However, we know this is not always be the case. Which parts of the world are urbanizing faster
+          than infrastructure can support? Where in the world is the lack of access to technology most prevalent? Furthermore,
+          which countries have the greatest disparities when it comes to urbanization and access to technology? 
+          <br></br>
+          <br></br>
+          Using the "Global Internet Usage" <a href="https://www.kaggle.com/sansuthi/gapminder-internet">dataset</a> from Kaggle,
+          we created the following data exploration activity to investigate how urban rate affects internet use rate across the world.
+        </p>
+        <div className="table">
+          <tbody>
+            <tr>
+              <td>
+                {/* Interaction 1: Color Selector */}
+                <div>
+                  <h5><label htmlFor="scheme">Select color option:</label><br /></h5>
+                  <select id="scheme" onChange={() => setColorScheme(scheme.value)}> 
+                    <option value="Color">Color</option>
+                    <option value="Grayscale">Grayscale</option>
+                  </select>
+                </div>
+              </td>
+              <td>
+                {/* Interaction 2: Continent Checkboxes */}
+                <div>
+                  <h5>Select which continents to view:</h5>
+                  <input type="checkbox" id="northamerica" name="northamerica" onChange={() => modifyContinentDisplay("North America")} />
+                  <label htmlFor="northamerica">&nbsp;North America</label><br />
+                  <input type="checkbox" id="southamerica" name="southamerica" onChange={() => modifyContinentDisplay("South America")} />
+                  <label htmlFor="southamerica">&nbsp;South America</label><br />
+                  <input type="checkbox" id="asia" name="asia" onChange={() => modifyContinentDisplay("Asia")}/>
+                  <label htmlFor="asia">&nbsp;Asia</label><br />
+                  <input type="checkbox" id="africa" name="africa" onChange={() => modifyContinentDisplay("Africa")} />
+                  <label htmlFor="africa">&nbsp;Africa</label><br />
+                  <input type="checkbox" id="australia" name="australia" onChange={() => modifyContinentDisplay("Australia")} />
+                  <label htmlFor="australia">&nbsp;Australia</label><br />
+                  <input type="checkbox" id="europe" name="europe" onChange={() => modifyContinentDisplay("Europe")} />
+                  <label htmlFor="europe">&nbsp;Europe</label><br />
+                </div>
+              </td>
+              <td>
+                {/* Interaction 3: Urban Rate Slider */}
+                <div>
+                  <h5 className="pr-5">Filter urban rate:</h5>
+                  <RangeSlider
+                    value={urbanRate}
+                    min={10}
+                    max={100}
+                    onChange={changeUrbanRate => setUrbanRate(changeUrbanRate.target.value)}
+                  />
+                  <label>[10, {urbanRate}]</label>
+                </div>
+              </td>
+              <td>
+                {/* Interaction 4: Internet Use Rate Slider */}
+                <div>
+                  <h5>Filter internet use rate:</h5>
+                  <RangeSlider
+                    value={internetRate}
+                    min={0}
+                    max={95}
+                    onChange={changeInternetRate => setInternetRate(changeInternetRate.target.value)}
+                  />
+                  <label>[0, {internetRate}]</label>
+                </div>       
+              </td>
+            </tr>
+          </tbody>
+        </div>    
+        {/* Scatterplot */}
         {tooltip}
         <svg style={{display: "block", margin: "auto"}} width={dimensions.width} height={dimensions.height}>
-          <text className="title" style={{textAnchor: "middle"}} x={dimensions.width/2} y={dimensions.margin - 20}>
-            How does having a higher urban rate in a country affect the rate of internet use?
+          <text className="title" style={{textAnchor: "middle", fontSize: "20px"}} x={dimensions.width/2} y={dimensions.margin - 20}>
+            Internet Use vs. Urban Rate
           </text>
-          <text style={{textAnchor: "middle"}} className="x-label" x={dimensions.width/2} y={dimensions.height - dimensions.margin + 35}>
+          <text style={{textAnchor: "middle", fontSize: "16px"}} className="x-label" x={dimensions.width/2} y={dimensions.height - dimensions.margin + 35}>
             Urban Rate
           </text>
-          <text className="y-label" transform={`translate(${dimensions.margin - 30}, ${dimensions.height/2})rotate(-90)`} >
+          <text style={{textAnchor: "middle", fontSize: "16px"}} className="y-label" transform={`translate(${dimensions.margin - 30}, ${dimensions.height/2})rotate(-90)`} >
             Internet Use Rate
           </text>
-
           {circles}
-
           <g transform={`translate(${dimensions.margin}, 0)`} className="axisLeft">
             <Axis orient={Orient.left} scale={yScale} />
           </g>
@@ -156,6 +222,8 @@ export const Visualization = () => {
             <Axis orient={Orient.bottom} scale={xScale} />
           </g>
         </svg>
+        <br></br>
+        <br></br>
         <Writeup />
       </div>
     )
