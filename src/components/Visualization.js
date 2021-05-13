@@ -62,14 +62,16 @@ export const Visualization = () => {
       const radius = 4;
       const x = xScale(+point.urbanrate);
       const y = yScale(+point.internetuserate);
-      return <circle
-        style={{fill: determineColorMap()[point.continent]}}
-        onMouseEnter={(event) => onPointHover(event)}
-        onMouseLeave={() => onPointLeave()} 
-        cx={x} cy={y} r={radius} // determine circle center's position
-        urbanrate={point.urbanrate} internetuserate={point.internetuserate} 
-        country={point.country} continent={point.continent} latitude={parseFloat(getLatitude(point.country))}
-      />
+      if(displayContinents.includes(point.continent)) {
+        return <circle
+          style={{fill: determineColorMap()[point.continent]}}
+          onMouseEnter={(event) => onPointHover(event)}
+          onMouseLeave={() => onPointLeave()} 
+          cx={x} cy={y} r={radius} // determine circle center's position
+          urbanrate={point.urbanrate} internetuserate={point.internetuserate} 
+          country={point.country} continent={point.continent} latitude={parseFloat(getLatitude(point.country))}
+        />
+      }
     });
 
     const tooltip = (
@@ -101,12 +103,13 @@ export const Visualization = () => {
     const onPointLeave = () => { setShowTooltip(false); }
 
     const modifyContinentDisplay = (continent) => {
-      let newDisplayContinents = displayContinents;
+      let newDisplayContinents = displayContinents.slice(0);
       if(newDisplayContinents.includes(continent)) { // remove continent if it exists
         newDisplayContinents = newDisplayContinents.filter((element) => { return element !== continent; });
       } else {
         newDisplayContinents.push(continent); // add continent if it doesn't exist
       }
+      setDisplayContinents(newDisplayContinents);
     }
 
     return (
@@ -120,17 +123,17 @@ export const Visualization = () => {
         </select>
         <br /><br />
         <h3>Select which continents to view:</h3>
-        <input type="checkbox" id="northamerica" name="northamerica" onChange={modifyContinentDisplay("North America")} />
+        <input type="checkbox" id="northamerica" name="northamerica" onChange={() => modifyContinentDisplay("North America")} />
         <label for="northamerica">North America</label><br />
-        <input type="checkbox" id="southamerica" name="southamerica" onChange={modifyContinentDisplay("South America")} />
+        <input type="checkbox" id="southamerica" name="southamerica" onChange={() => modifyContinentDisplay("South America")} />
         <label for="southamerica">South America</label><br />
-        <input type="checkbox" id="asia" name="asia" onChange={modifyContinentDisplay("Asia")}/>
+        <input type="checkbox" id="asia" name="asia" onChange={() => modifyContinentDisplay("Asia")}/>
         <label for="asia">Asia</label><br />
-        <input type="checkbox" id="africa" name="africa" onChange={modifyContinentDisplay("Africa")} />
+        <input type="checkbox" id="africa" name="africa" onChange={() => modifyContinentDisplay("Africa")} />
         <label for="africa">Africa</label><br />
-        <input type="checkbox" id="australia" name="australia" onChange={modifyContinentDisplay("Australia")} />
+        <input type="checkbox" id="australia" name="australia" onChange={() => modifyContinentDisplay("Australia")} />
         <label for="australia">Australia</label><br />
-        <input type="checkbox" id="europe" name="europe" onChange={modifyContinentDisplay("Europe")} />
+        <input type="checkbox" id="europe" name="europe" onChange={() => modifyContinentDisplay("Europe")} />
         <label for="europe">Europe</label><br />
         {tooltip}
         <svg style={{display: "block", margin: "auto"}} width={dimensions.width} height={dimensions.height}>
