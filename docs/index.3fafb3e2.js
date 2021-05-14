@@ -26419,8 +26419,8 @@ try {
         const radius = 4;
         const x = xScale(+point.urbanrate);
         const y = yScale(+point.internetuserate);
-        if (point.urbanrate >= urbanRate) return;
-        if (point.internetuserate >= internetRate) return;
+        if (+point.urbanrate >= urbanRate) return;
+        if (+point.internetuserate >= internetRate) return;
         if (displayContinents.includes(point.continent)) {
           return (
             /*#__PURE__*/_reactDefault.default.createElement("circle", {
@@ -26462,45 +26462,24 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 86,
+          lineNumber: 88,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("span", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 92,
+          lineNumber: 94,
           columnNumber: 9
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 92,
+          lineNumber: 94,
           columnNumber: 15
         }
       }, " Country:"), " ", tooltipContent.country), /*#__PURE__*/_reactDefault.default.createElement("br", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 93,
-          columnNumber: 9
-        }
-      }), /*#__PURE__*/_reactDefault.default.createElement("span", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 94,
-          columnNumber: 9
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 94,
-          columnNumber: 15
-        }
-      }, " Urban Rate:"), " ", tooltipContent.x), /*#__PURE__*/_reactDefault.default.createElement("br", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
@@ -26519,6 +26498,27 @@ try {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 96,
+          columnNumber: 15
+        }
+      }, " Urban Rate:"), " ", tooltipContent.x), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 97,
+          columnNumber: 9
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("span", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 98,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 98,
           columnNumber: 15
         }
       }, " Internet Use Rate:"), " ", tooltipContent.y));
@@ -26560,7 +26560,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 124,
+            lineNumber: 126,
             columnNumber: 7
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26568,28 +26568,28 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 125,
+            lineNumber: 127,
             columnNumber: 9
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 126,
+            lineNumber: 128,
             columnNumber: 11
           }
         }, "Assignment 3: Interactive Visualization"), /*#__PURE__*/_reactDefault.default.createElement("h4", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 127,
+            lineNumber: 129,
             columnNumber: 11
           }
         }, "Catherine Oei and Rishi Kavikondola", /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 128,
+            lineNumber: 130,
             columnNumber: 48
           }
         }), "13 April 2021")), /*#__PURE__*/_reactDefault.default.createElement("h2", {
@@ -26597,28 +26597,28 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 132,
+            lineNumber: 134,
             columnNumber: 9
           }
         }, "How does urban rate affect internet use rate across the globe?"), /*#__PURE__*/_reactDefault.default.createElement("p", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 133,
+            lineNumber: 135,
             columnNumber: 9
           }
         }, "Urbanization has historically been regarded as a mark of progress and a sign of economic prosper. Internet usage rates may be an indicator of technological access. In theory, access to technology should increase as areas become more urbanized due to improvements in infrastructure. However, we know this is not always be the case. Which parts of the world are urbanizing faster than infrastructure can support? Where in the world is the lack of access to technology most prevalent? Furthermore, which countries have the greatest disparities when it comes to urbanization and access to technology?", /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 140,
+            lineNumber: 142,
             columnNumber: 11
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 141,
+            lineNumber: 143,
             columnNumber: 11
           }
         }), "Using the \"Global Internet Usage\" ", /*#__PURE__*/_reactDefault.default.createElement("a", {
@@ -26626,7 +26626,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 142,
+            lineNumber: 144,
             columnNumber: 45
           }
         }, "dataset"), " from Kaggle, we created the following data exploration activity to investigate how urban rate affects internet use rate across the world."), /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26634,42 +26634,42 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 145,
+            lineNumber: 147,
             columnNumber: 9
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("tbody", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 146,
+            lineNumber: 148,
             columnNumber: 11
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("tr", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 147,
+            lineNumber: 149,
             columnNumber: 13
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("td", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 148,
+            lineNumber: 150,
             columnNumber: 15
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 150,
+            lineNumber: 152,
             columnNumber: 17
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 151,
+            lineNumber: 153,
             columnNumber: 19
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("label", {
@@ -26677,14 +26677,14 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 151,
+            lineNumber: 153,
             columnNumber: 23
           }
         }, "Select color option:"), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 151,
+            lineNumber: 153,
             columnNumber: 75
           }
         })), /*#__PURE__*/_reactDefault.default.createElement("select", {
@@ -26693,7 +26693,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 152,
+            lineNumber: 154,
             columnNumber: 19
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("option", {
@@ -26701,7 +26701,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 153,
+            lineNumber: 155,
             columnNumber: 21
           }
         }, "Color"), /*#__PURE__*/_reactDefault.default.createElement("option", {
@@ -26709,28 +26709,28 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 154,
+            lineNumber: 156,
             columnNumber: 21
           }
         }, "Grayscale")))), /*#__PURE__*/_reactDefault.default.createElement("td", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 158,
+            lineNumber: 160,
             columnNumber: 15
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 160,
+            lineNumber: 162,
             columnNumber: 17
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 161,
+            lineNumber: 163,
             columnNumber: 19
           }
         }, "Select which continents to view:"), /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -26741,7 +26741,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 162,
+            lineNumber: 164,
             columnNumber: 19
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("label", {
@@ -26749,14 +26749,14 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 163,
+            lineNumber: 165,
             columnNumber: 19
           }
         }, " North America"), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 163,
+            lineNumber: 165,
             columnNumber: 76
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -26767,7 +26767,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 164,
+            lineNumber: 166,
             columnNumber: 19
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("label", {
@@ -26775,14 +26775,14 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 165,
+            lineNumber: 167,
             columnNumber: 19
           }
         }, " South America"), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 165,
+            lineNumber: 167,
             columnNumber: 76
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -26793,7 +26793,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 166,
+            lineNumber: 168,
             columnNumber: 19
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("label", {
@@ -26801,14 +26801,14 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 167,
+            lineNumber: 169,
             columnNumber: 19
           }
         }, " Asia"), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 167,
+            lineNumber: 169,
             columnNumber: 59
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -26819,7 +26819,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 168,
+            lineNumber: 170,
             columnNumber: 19
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("label", {
@@ -26827,14 +26827,14 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 169,
+            lineNumber: 171,
             columnNumber: 19
           }
         }, " Africa"), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 169,
+            lineNumber: 171,
             columnNumber: 63
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -26845,7 +26845,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 170,
+            lineNumber: 172,
             columnNumber: 19
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("label", {
@@ -26853,14 +26853,14 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 171,
+            lineNumber: 173,
             columnNumber: 19
           }
         }, " Australia"), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 171,
+            lineNumber: 173,
             columnNumber: 69
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -26871,7 +26871,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 172,
+            lineNumber: 174,
             columnNumber: 19
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("label", {
@@ -26879,28 +26879,28 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 173,
+            lineNumber: 175,
             columnNumber: 19
           }
         }, " Europe"), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 173,
+            lineNumber: 175,
             columnNumber: 63
           }
         }))), /*#__PURE__*/_reactDefault.default.createElement("td", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 176,
+            lineNumber: 178,
             columnNumber: 15
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 178,
+            lineNumber: 180,
             columnNumber: 17
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
@@ -26908,7 +26908,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 179,
+            lineNumber: 181,
             columnNumber: 19
           }
         }, "Filter urban rate:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRangeSliderDefault.default, {
@@ -26919,35 +26919,35 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 180,
+            lineNumber: 182,
             columnNumber: 19
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("label", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 186,
+            lineNumber: 188,
             columnNumber: 19
           }
         }, "[10, ", urbanRate, "]"))), /*#__PURE__*/_reactDefault.default.createElement("td", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 189,
+            lineNumber: 191,
             columnNumber: 15
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 191,
+            lineNumber: 193,
             columnNumber: 17
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 192,
+            lineNumber: 194,
             columnNumber: 19
           }
         }, "Filter internet use rate:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRangeSliderDefault.default, {
@@ -26958,14 +26958,14 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 193,
+            lineNumber: 195,
             columnNumber: 19
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("label", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 199,
+            lineNumber: 201,
             columnNumber: 19
           }
         }, "[0, ", internetRate, "]")))))), tooltip, /*#__PURE__*/_reactDefault.default.createElement("svg", {
@@ -26978,7 +26978,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 207,
+            lineNumber: 209,
             columnNumber: 9
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("text", {
@@ -26992,7 +26992,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 208,
+            lineNumber: 210,
             columnNumber: 11
           }
         }, "Internet Use vs. Urban Rate"), /*#__PURE__*/_reactDefault.default.createElement("text", {
@@ -27006,7 +27006,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 211,
+            lineNumber: 213,
             columnNumber: 11
           }
         }, "Urban Rate"), /*#__PURE__*/_reactDefault.default.createElement("text", {
@@ -27019,7 +27019,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 214,
+            lineNumber: 216,
             columnNumber: 11
           }
         }, "Internet Use Rate"), circles, /*#__PURE__*/_reactDefault.default.createElement("g", {
@@ -27028,7 +27028,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 218,
+            lineNumber: 220,
             columnNumber: 11
           }
         }, /*#__PURE__*/_reactDefault.default.createElement(_d3AxisForReact.Axis, {
@@ -27037,7 +27037,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 219,
+            lineNumber: 221,
             columnNumber: 13
           }
         })), /*#__PURE__*/_reactDefault.default.createElement("g", {
@@ -27046,7 +27046,7 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 221,
+            lineNumber: 223,
             columnNumber: 11
           }
         }, /*#__PURE__*/_reactDefault.default.createElement(_d3AxisForReact.Axis, {
@@ -27055,28 +27055,28 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 222,
+            lineNumber: 224,
             columnNumber: 13
           }
         }))), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 225,
+            lineNumber: 227,
             columnNumber: 9
           }
         }), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 226,
+            lineNumber: 228,
             columnNumber: 9
           }
         }), /*#__PURE__*/_reactDefault.default.createElement(_Writeup.Writeup, {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 227,
+            lineNumber: 229,
             columnNumber: 9
           }
         }))

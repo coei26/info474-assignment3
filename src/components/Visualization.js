@@ -65,14 +65,16 @@ export const Visualization = () => {
       const radius = 4;
       const x = xScale(+point.urbanrate);
       const y = yScale(+point.internetuserate);
-      if (point.urbanrate >= urbanRate) return
-      if(point.internetuserate >= internetRate) return
+      if (+point.urbanrate >= urbanRate) return
+      if(+point.internetuserate >= internetRate) return
       if(displayContinents.includes(point.continent)) {
         return <circle
           style={{fill: determineColorMap()[point.continent]}}
           onMouseEnter={(event) => onPointHover(event)}
           onMouseLeave={() => onPointLeave()} 
-          cx={x} cy={y} r={radius} // determine circle center's position
+          cx={x}
+          cy={y}
+          r={radius} // determine circle center's position
           urbanrate={point.urbanrate}
           internetuserate={point.internetuserate} 
           country={point.country}
