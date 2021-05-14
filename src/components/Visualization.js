@@ -136,7 +136,7 @@ export const Visualization = () => {
           Urbanization has historically been regarded as a mark of progress and a sign of economic prosper. Internet usage rates may be
           an indicator of technological access.
           In theory, access to technology should increase as areas become more urbanized due to improvements in infrastructure. 
-          However, we know this is not always be the case. Which parts of the world are urbanizing faster
+          However, we know this is not always the case. Which parts of the world are urbanizing faster
           than infrastructure can support? Where in the world is the lack of access to technology most prevalent? Furthermore,
           which countries have the greatest disparities when it comes to urbanization and access to technology? 
           <br></br>

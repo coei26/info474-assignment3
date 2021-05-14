@@ -44,7 +44,7 @@ export const Writeup = () => {
         question. Finally, we went about our individual tasks of creating the plot and implementing the respective interactive pieces. In total,
         about 12 hours were spent developing the application, split evenly among our team. The most time consuming aspects of this assignment
         were implementing the different interactive elements. This was time consuming due to us being out of practice with React, our unfamiliarity
-        with d3 and combining the d3 with React, as well as the debugging process.
+        with d3 and combining d3 with React, as well as the debugging process.
       </p>
       <br></br>
     </div>
